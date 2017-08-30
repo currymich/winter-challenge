@@ -1,4 +1,4 @@
-//prod.js production env keys - don't commit this!!!
+//prod.js production env keys - DO commit this!!!
 module.exports = {
 	// Google OAuth 2.0
 	googleClientID: process.env.GOOGLE_CLIENT_ID,
