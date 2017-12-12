@@ -10,7 +10,8 @@ const keys = require("./config/keys");
 // DB config
 const mongoURI = process.env.MONGODB_URI || "mongodb://localhost/emaily";
 
-mongoose.connect(mongoURI);
+mongoose.connect(mongoURI, {useMongoClient: true});
+mongoose.Promise = global.Promise;
 
 // Models
 require("./models/User");
