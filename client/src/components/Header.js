@@ -14,11 +14,15 @@ class Header extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <nav>
         <div className="nav-wrapper">
-          <a className="left brand-logo">Element</a>
+          <Link
+            className="left brand-logo"
+            to={this.props.auth ? '/surveys' : '/'}
+          >
+            Element
+          </Link>
           <ul className="right">
             {this.renderLogin()}
           </ul>
