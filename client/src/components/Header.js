@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class Header extends Component {
+
   renderLogin() {
-    switch (this.props.auth) {
+    const currentUser = this.props.auth;
+    switch (currentUser) {
       case null:
         return;
       case false:
         return <li><a href="/auth/google">Login</a></li>;
       default:  //user IS logged in
-        return <li><a href="/api/logout">Logout</a></li>
+        return <li><a href="/api/logout">{`${currentUser.name} (${currentUser.points})`} - Logout</a></li>
     }
   }
 
