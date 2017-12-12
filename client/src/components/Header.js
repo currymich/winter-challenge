@@ -7,7 +7,7 @@ class Header extends Component {
         <div className="nav-wrapper">
           <a className="left brand-logo">Element</a>
           <ul className="right">
-            <li><a href="#">Login</a></li>
+            <li><a href="/auth/google">Login</a></li>
           </ul>
         </div>
       </nav>
