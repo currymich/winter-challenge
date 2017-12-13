@@ -2,6 +2,7 @@
 const passport = require("passport");
 
 module.exports = app => {
+  // hit this route to start oauth process
 	app.get(
 		"/auth/google",
 		passport.authenticate("google", {
@@ -9,14 +10,16 @@ module.exports = app => {
 		})
 	);
 
+  //hit by goog OAuth post-auth
 	app.get(
 		"/auth/google/callback",
 		passport.authenticate("google"),
 		(req, res) => {
-			res.redirect('/surveys');
+			res.redirect('/dashboard');
 		}
-);
+	);
 
+  // visiting this route clears logged in user
 	app.get('/api/logout', (req, res) => {
 		req.logout();
 		res.redirect('/');
