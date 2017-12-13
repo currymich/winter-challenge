@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+
 class Header extends Component {
 
   renderLogin() {
-    const currentUser = this.props.auth;
-    switch (currentUser) {
+    const { auth } = this.props;
+    switch (auth) {
       case null:
         return;
       case false:
@@ -14,7 +15,7 @@ class Header extends Component {
       default:  //user IS logged in
         return (
           <ul>
-            <li>{`${currentUser.name} (${currentUser.points})`}</li>
+            <li>{`${auth.name} (${auth.points})`}</li>
             <li>
               <a className="waves-effect waves-light btn" href="/api/logout">
                 Logout
