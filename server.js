@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
+const path = require('path');
 
 // Local Packages
 const keys = require("./config/keys");
@@ -35,6 +36,16 @@ app.use(passport.session());
 
 // Route Files
 require("./routes/authRoutes")(app);
+
+if (process.env.NODE_ENV === 'production') {
+  // express will serve production assets (main.js/css)
+	app.use(express.static('client/build'));
+
+  // express will serve index.html if unrec. route
+	app.get('*', (req, res) => {
+		res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+	});
+}
 
 // Server Start
 const PORT = process.env.PORT || 5000;
