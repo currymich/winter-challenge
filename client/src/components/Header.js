@@ -10,9 +10,18 @@ class Header extends Component {
       case null:
         return;
       case false:
-        return <li><a href="/auth/google">Login</a></li>;
+        return <li><a className="waves-effect waves-light btn" href="/auth/google">Login</a></li>;
       default:  //user IS logged in
-        return <li><a href="/api/logout">{`${currentUser.name} (${currentUser.points})`} - Logout</a></li>
+        return (
+          <ul>
+            <li>{`${currentUser.name} (${currentUser.points})`}</li>
+            <li>
+              <a className="waves-effect waves-light btn" href="/api/logout">
+                Logout
+              </a>
+            </li>
+          </ul>
+        )
     }
   }
 
