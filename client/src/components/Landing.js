@@ -4,9 +4,13 @@ const Landing = () => {
   return (
     <div style={{ textAlign: 'center' }}>
       <h1>
-        Emaily!
+        Element Winter Challenge!
       </h1>
-      Collect feedback from your users!
+      Track progress on your winter challenge goals, earn points, win prizes!
+
+      <div style={{ marginTop: '10em' }}>
+        <h3>Leaderboard here?</h3>
+      </div>
     </div>
   )
 }

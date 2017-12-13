@@ -32,9 +32,9 @@ class Header extends Component {
         <div className="nav-wrapper">
           <Link
             className="left brand-logo"
-            to={this.props.auth ? '/surveys' : '/'}
+            to={this.props.auth ? '/dashboard' : '/'}
           >
-            Element
+            Winter Challenge!
           </Link>
           <ul className="right">
             {this.renderLogin()}
