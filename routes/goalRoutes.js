@@ -58,6 +58,26 @@ module.exports = app => {
 
     res.send(exercise);
   });
+
+//book reading routes
+  app.post("/goals/book_reading", async (req, res) => {
+    const { user, book, points } = req.body;
+    const newReading = await Goal.create({
+      user_id: user.googleId,
+      type: 'bookReading',
+      book,
+      points
+    });
+
+    res.json({req: req.body, newGoal: newReading});
+  });
+
+  app.get("/goals/book_reading", async (req, res) => {
+    const booksRead = await Goal.find({type: "bookReading"});
+
+    res.send(booksRead);
+  });
+
 //get all goals for a user
   app.get("/goals/user/:id", async (req, res) => {
     const userGoals = await Goal.find({user_id: req.params.id});
