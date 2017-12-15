@@ -17,6 +17,7 @@ mongoose.Promise = global.Promise;
 
 // Models
 require("./models/User");
+require("./models/Goal")
 
 // Services
 require("./services/passport");
