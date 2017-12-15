@@ -40,4 +40,9 @@ module.exports = app => {
     res.send(read);
   });
 
+  app.delete("/goals", async (req, res) => {
+    const goal = await Goal.findByIdAndRemove({_id: req.body.goalId});
+
+    res.json({goal: goal})
+  });
 };
