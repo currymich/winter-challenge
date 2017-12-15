@@ -29,7 +29,7 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps(state){
-  return { auth: state.auth };
+  return { auth: state.auth, goals: state.goals };
 };
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(mapStateToProps, actions)(Dashboard);
