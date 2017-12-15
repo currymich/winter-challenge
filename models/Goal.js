@@ -7,3 +7,12 @@ const goalSchema = new Schema({
 
 const Goal = mongoose.model("goals", goalSchema);
 
+const BibleReading = Goal.discriminator(
+	"bibleReading",
+	new Schema({
+		points: { type: Number, default: 2 },
+		book: String,
+		chapter: Number
+	})
+);
+
