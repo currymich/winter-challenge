@@ -32,3 +32,10 @@ const Exercise = Goal.discriminator(
 	})
 );
 
+const BookReading = Goal.discriminator(
+	"bookReading",
+	new Schema({
+		points: Number,
+		book: String
+	})
+);
