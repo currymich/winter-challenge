@@ -16,3 +16,11 @@ const BibleReading = Goal.discriminator(
 	})
 );
 
+const BibleMemory = Goal.discriminator(
+	"bibleMemory",
+	new Schema({
+		points: { type: Number, default: 20 },
+		verse: String
+	})
+);
+
