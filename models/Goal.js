@@ -24,3 +24,11 @@ const BibleMemory = Goal.discriminator(
 	})
 );
 
+const Exercise = Goal.discriminator(
+	"exercise",
+	new Schema({
+		distance: Number,
+		points: Number
+	})
+);
+
