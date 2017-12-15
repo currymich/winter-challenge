@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
 const path = require('path');
+const bodyParser = require('body-parser');
 
 // Local Packages
 const keys = require("./config/keys");
@@ -23,6 +24,7 @@ require("./services/passport");
 // Middleware start
 const app = express();
 const db = mongoose.connection;
+app.use(bodyParser.json());
 
 // Auth config
 app.use(
