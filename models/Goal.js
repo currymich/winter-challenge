@@ -2,7 +2,11 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const goalSchema = new Schema({
-	user_id: String
+	user_id: String,
+	date_created: {
+		type: Date,
+		default: Date.now
+	}
 }, { discriminatorKey: "type" });
 
 const Goal = mongoose.model("goals", goalSchema);
