@@ -23,7 +23,7 @@ module.exports = app => {
 
 //bible reading routes
   app.post("/goals/bible_reading", async (req, res) => {
-    const { book, chapter } = req.body;
+    const { user, book, chapter } = req.body;
     const newReading = await Goal.create({
       _user: user._id,
       type: 'bibleReading',
