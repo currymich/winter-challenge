@@ -10,7 +10,7 @@ const bodyParser = require('body-parser');
 const keys = require("./config/keys");
 
 // DB config
-const mongoURI = process.env.MONGODB_URI || "mongodb://localhost/emaily";
+const mongoURI = process.env.MONGODB_URI || "mongodb://localhost/winter_challenge";
 
 mongoose.connect(mongoURI, {useMongoClient: true});
 mongoose.Promise = global.Promise;
