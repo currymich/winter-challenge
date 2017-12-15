@@ -40,6 +40,25 @@ module.exports = app => {
     res.send(read);
   });
 
+//exercise routes
+  app.post("/goals/exercise", async (req, res) => {
+    const { user, distance, points } = req.body;
+    const newExercise = await Goal.create({
+      _user: user._id,
+      type: 'exercise',
+      distance,
+      points
+    });
+
+    res.json({req: req.body, newGoal: newExercise});
+  });
+
+  app.get("/goals/exercise", async (req, res) => {
+    const exercise = await Goal.find({type: "exercise"});
+
+    res.send(exercise);
+  });
+//generic delete route
   app.delete("/goals", async (req, res) => {
     const goal = await Goal.findByIdAndRemove({_id: req.body.goalId});
 
