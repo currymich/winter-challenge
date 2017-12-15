@@ -86,6 +86,13 @@ module.exports = app => {
   });
 
 
+//generic get all goals route (caution - big)
+  app.get("/goals", async (req, res) => {
+    const allGoals = await Goal.find();
+
+    res.send(allGoals);
+  });
+
 //generic delete route
   app.delete("/goals", async (req, res) => {
     const goal = await Goal.findByIdAndRemove({_id: req.body.goalId});
