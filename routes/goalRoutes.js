@@ -7,7 +7,7 @@ module.exports = app => {
   app.post("/goals/bible_memory", async (req, res) => {
     const { user, verse } = req.body;
 		const newMemorized = await Goal.create({
-		  _user: user._id,
+		  user_id: user.googleId,
 		  type: 'bibleMemory',
 		  verse: verse
 		});
@@ -25,7 +25,7 @@ module.exports = app => {
   app.post("/goals/bible_reading", async (req, res) => {
     const { user, book, chapter } = req.body;
     const newReading = await Goal.create({
-      _user: user._id,
+      user_id: user.googleId,
       type: 'bibleReading',
       book,
       chapter
@@ -44,7 +44,7 @@ module.exports = app => {
   app.post("/goals/exercise", async (req, res) => {
     const { user, distance, points } = req.body;
     const newExercise = await Goal.create({
-      _user: user._id,
+      user_id: user.googleId,
       type: 'exercise',
       distance,
       points
@@ -58,6 +58,14 @@ module.exports = app => {
 
     res.send(exercise);
   });
+//get all goals for a user
+  app.get("/goals/user/:id", async (req, res) => {
+    const userGoals = await Goal.find({user_id: req.params.id});
+
+    res.send(userGoals);
+  });
+
+
 //generic delete route
   app.delete("/goals", async (req, res) => {
     const goal = await Goal.findByIdAndRemove({_id: req.body.goalId});

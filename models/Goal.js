@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const goalSchema = new Schema({
-	_user: { type: Schema.Types.ObjectId, ref: 'User'}
+	user_id: String
 }, { discriminatorKey: "type" });
 
 const Goal = mongoose.model("goals", goalSchema);
