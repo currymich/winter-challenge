@@ -1,10 +1,13 @@
 import axios from 'axios';
-import { FETCH_USER, FETCH_MEMORIZED } from './types';
+import { FETCH_USER, FETCH_MEMORIZED, FETCH_BIBLE_READING, UPDATE_USER_POINTS } from './types';
 
 export const fetchUser = () => {
   return async dispatch => {
-    const res = await axios.get('/api/current_user');
-    dispatch({type: FETCH_USER, payload: res});
+    const user = await axios.get('/api/current_user');
+    dispatch({type: FETCH_USER, payload: user});
+
+    const goals = await axios.get(`/goals/user`);
+    dispatch({type: UPDATE_USER_POINTS, payload: goals })
   }
 };
 
