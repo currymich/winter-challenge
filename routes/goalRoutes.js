@@ -87,8 +87,8 @@ module.exports = app => {
   });
 
 //get all goals for a user
-  app.get("/goals/user/:id", async (req, res) => {
-    const userGoals = await Goal.find({user_id: req.params.id});
+  app.get("/goals/user", async (req, res) => {
+    const userGoals = await Goal.find({user_id: req.user.googleId});
 
     res.send(userGoals);
   });
