@@ -3,6 +3,7 @@ const { Schema } = mongoose;
 
 const goalSchema = new Schema({
 	user_id: String,
+	user_name: String,
 	date_created: {
 		type: Date,
 		default: Date.now

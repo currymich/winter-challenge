@@ -5,9 +5,11 @@ const User = mongoose.model("users");
 module.exports = app => {
 //Bible memorization routes
   app.post("/goals/bible_memory", async (req, res) => {
-    const { user, verse } = req.body;
+    const { verse } = req.body;
+    const { googleId, name } = req.user;
 		const newMemorized = await Goal.create({
-		  user_id: user.googleId,
+		  user_id: googleId,
+      user_name: name;
 		  type: 'bibleMemory',
 		  verse: verse
 		});
@@ -23,9 +25,11 @@ module.exports = app => {
 
 //bible reading routes
   app.post("/goals/bible_reading", async (req, res) => {
-    const { user, book, chapter } = req.body;
+    const { book, chapter } = req.body;
+    const { googleId, name } = req.user;
     const newReading = await Goal.create({
-      user_id: user.googleId,
+      user_id: googleId,
+      user_name: name,
       type: 'bibleReading',
       book,
       chapter
@@ -42,9 +46,11 @@ module.exports = app => {
 
 //exercise routes
   app.post("/goals/exercise", async (req, res) => {
-    const { user, distance, points } = req.body;
+    const { distance, points } = req.body;
+    const { googleId, name } = req.user;
     const newExercise = await Goal.create({
-      user_id: user.googleId,
+      user_id: googleId,
+      user_name: name,
       type: 'exercise',
       distance,
       points
@@ -61,9 +67,11 @@ module.exports = app => {
 
 //book reading routes
   app.post("/goals/book_reading", async (req, res) => {
-    const { user, book, points } = req.body;
+    const { book, points } = req.body;
+    const { googleId, name } = req.user;
     const newReading = await Goal.create({
-      user_id: user.googleId,
+      user_id: googleId,
+      user_name: name,
       type: 'bookReading',
       book,
       points
