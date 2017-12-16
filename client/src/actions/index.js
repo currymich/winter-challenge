@@ -14,3 +14,10 @@ export const fetchMemorizedVerses = () => {
     dispatch({type: FETCH_MEMORIZED, payload: res});
   }
 }
+
+export const fetchBibleReading = () => {
+  return async dispatch => {
+    const res = await axios.get('/goals/bible_reading');
+    dispatch({type: FETCH_BIBLE_READING, payload: res});
+  }
+}
