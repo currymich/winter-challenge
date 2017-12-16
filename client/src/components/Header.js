@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-
 class Header extends Component {
 
   renderLogin() {
@@ -15,7 +14,7 @@ class Header extends Component {
       default:  //user IS logged in
         return (
           <ul>
-            <li>{`${auth.name} (${auth.points})`}</li>
+            <li>{`${auth.name} (${this.props.points})`}</li>
             <li>
               <a className="waves-effect waves-light btn" href="/api/logout">
                 Logout
@@ -46,7 +45,7 @@ class Header extends Component {
 }
 
 function mapStateToProps(state){
-  return { auth: state.auth };
+  return { auth: state.auth, points: state.points };
 };
 
 export default connect(mapStateToProps)(Header);
