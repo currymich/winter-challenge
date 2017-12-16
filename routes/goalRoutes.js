@@ -9,7 +9,7 @@ module.exports = app => {
     const { googleId, name } = req.user;
 		const newMemorized = await Goal.create({
 		  user_id: googleId,
-      user_name: name;
+      user_name: name,
 		  type: 'bibleMemory',
 		  verse: verse
 		});
@@ -18,9 +18,15 @@ module.exports = app => {
 	});
 
 	app.get("/goals/bible_memory", async (req, res) => {
-		const memorized = await Goal.find({type: "bibleMemory"});
 
-		res.send(memorized);
+    if(!req.user){
+      const memorized = await Goal.find({type: "bibleMemory"});
+      res.send(memorized);
+    } else {
+      const memorized = await Goal.find({type: "bibleMemory", user_id: req.user.googleId});
+      res.send(memorized);
+    }
+
 	});
 
 //bible reading routes
@@ -39,9 +45,13 @@ module.exports = app => {
   });
 
   app.get("/goals/bible_reading", async (req, res) => {
-    const read = await Goal.find({type: "bibleReading"});
-
-    res.send(read);
+    if(!req.user){
+      const read = await Goal.find({type: "bibleReading"});
+      res.send(read);
+    } else {
+      const read = await Goal.find({type: "bibleReading", user_id: req.user.googleId});
+      res.send(read);
+    }
   });
 
 //exercise routes
@@ -60,9 +70,15 @@ module.exports = app => {
   });
 
   app.get("/goals/exercise", async (req, res) => {
-    const exercise = await Goal.find({type: "exercise"});
 
-    res.send(exercise);
+    if(!req.user){
+      const exercise = await Goal.find({type: "exercise"});
+      res.send(exercise);
+    } else {
+      const exercise = await Goal.find({type: "exercise", user_id: req.user.googleId});
+      res.send(exercise);
+    }
+
   });
 
 //book reading routes
@@ -81,9 +97,15 @@ module.exports = app => {
   });
 
   app.get("/goals/book_reading", async (req, res) => {
-    const booksRead = await Goal.find({type: "bookReading"});
 
-    res.send(booksRead);
+    if(!req.user){
+      const booksRead = await Goal.find({type: "bookReading"});
+      res.send(booksRead);
+    } else {
+      const booksRead = await Goal.find({type: "bookReading", user_id: req.user.googleId});
+      res.send(booksRead);
+    }
+
   });
 
 //get all goals for a user
