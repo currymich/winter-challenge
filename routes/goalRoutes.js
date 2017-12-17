@@ -41,7 +41,8 @@ module.exports = app => {
       chapter
     });
 
-    res.json({req: req.body, newGoal: newReading});
+    const userGoals = await Goal.find({user_id: req.user.googleId});
+    res.json({userGoals});
   });
 
   app.get("/goals/bible_reading", async (req, res) => {
