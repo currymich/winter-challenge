@@ -22,6 +22,7 @@
 		"express": "^4.15.4",
 		"mongoose": "^4.11.8",
 		"passport": "^0.3.2",
-		"passport-google-oauth20": "^1.0.0"
+		"passport-google-oauth20": "^1.0.0",
+		"redux-form": "^7.2.0"
 	}
 }
