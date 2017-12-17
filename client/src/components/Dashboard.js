@@ -19,7 +19,7 @@ class Dashboard extends Component {
 
         <div style={{ marginTop: '10em' }}>
           <div>Bible Reading entry form</div>
-          <div>Memory Verse entry form</div>
+          <div><NewBibleMemoryForm/></div>
           <div>Exercise entry form</div>
           <div>Book Reading entry form</div>
         </div>
