@@ -24,3 +24,10 @@ export const fetchBibleReading = () => {
     dispatch({type: FETCH_BIBLE_READING, payload: res});
   }
 }
+
+//THIS IS BROKEN, CANT AUTO UPDATE BUT FORM SUB DOES WORK!!!!
+export const newBibleReading = (values, history) => {
+  axios.post('/goals/bible_reading', values).then(res => {
+    return ({type: UPDATE_USER_POINTS, payload: res.data})
+  });
+};
