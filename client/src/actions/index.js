@@ -31,6 +31,20 @@ export const fetchBibleReading = () => {
     dispatch({type: FETCH_BIBLE_READING, payload: res});
   }
 }
+export function createGoal(values, type) {
+	const endpointUrl = type => {
+		switch (type) {
+			case "bibleReading":
+				return "/goals/bible_reading";
+			case "bibleMemory":
+				return "/goals/bible_reading";
+			case "bookReading":
+				return "/goals/book_reading";
+			case "exercise":
+				return "/goals/exercise";
+      default:
+		}
+	};
 
 export function createGoal(values) {
   return dispatch => {
