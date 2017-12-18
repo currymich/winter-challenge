@@ -1,42 +1,71 @@
-import React from 'react';
-import { Field, reduxForm } from 'redux-form';
-import renderField from './render';
-import * as actions from '../../actions';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Field, reduxForm } from "redux-form";
+import * as actions from "../../actions";
 
-async function submitReading(values, history){
-  await actions.newBibleReading(values, history);
-}
+class NewBibleReadingForm extends Component {
+	renderField(field) {
+		const {
+			input,
+			label,
+			type,
+			placeholder,
+			meta: { touched, error }
+		} = field;
 
-const NewBibleReadingForm = props => {
-  const { handleSubmit, pristine, reset, submitting } = props
-  return (
-    <form onSubmit={handleSubmit(submitReading)}>
-      <Field
-        name="book"
-        type="text"
-        component={renderField}
-        label="Book of Bible"
-        placeholder = "Genesis"
-      />
-      <Field
-        name="chapter"
-        type="number"
-        component={renderField}
-        label="Chapter"
-        placeholder = "1-5"
-      />
-      <div>
-        <button type="submit" disabled={submitting} onClick={reset}>
-          Submit
-        </button>
-        <button type="button" disabled={pristine || submitting} onClick={reset}>
-          Clear Values
-        </button>
-      </div>
-    </form>
-  )
+		return (
+			<div>
+				<label>{label}</label>
+				<div>
+					<input {...input} placeholder={placeholder} type={type} />
+					<div className="red-text" style={{ marginBottom: "20px" }}>
+						{touched && error}
+					</div>
+				</div>
+			</div>
+		);
+	}
+
+  onSubmit(values) {
+    this.props.createGoal(values, 'bibleReading')
+  }
+
+	render() {
+		const { handleSubmit, pristine, reset, submitting } = this.props;
+
+    return (
+			<form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+				<Field
+					name="book"
+					type="text"
+          label="Book of Bible"
+          placeholder="Genesis"
+					component={this.renderField}
+				/>
+				<Field
+					name="chapter"
+					type="number"
+          label="Chapter"
+          placeholder="1-5"
+					component={this.renderField}
+				/>
+				<div>
+					<button type="submit" disabled={submitting}>
+						Submit
+					</button>
+					<button
+						type="button"
+						disabled={pristine || submitting}
+						onClick={reset}
+					>
+						Clear Values
+					</button>
+				</div>
+			</form>
+		);
+	}
 }
 
 export default reduxForm({
-  form: 'newBibleReading',
-})(NewBibleReadingForm)
+	form: "newBibleReading"
+})(connect(null, actions)(NewBibleReadingForm));
