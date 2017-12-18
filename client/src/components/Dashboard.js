@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import NewBibleMemoryForm from './goals/NewGoalForms.js';
+import NewBibleReadingForm from './goals/NewBibleReadingForm.js';
+import NewBibleMemoryForm from './goals/NewBibleMemoryForm.js';
+
+
 
 class Dashboard extends Component {
   componentDidMount(){
@@ -22,8 +25,8 @@ class Dashboard extends Component {
         </div>
 
         <div style={{ marginTop: '10em' }}>
-          <div>Bible Reading entry form</div>
           <div><NewBibleMemoryForm/></div>
+          <div><NewBibleReadingForm/></div>
           <div>Exercise entry form</div>
           <div>Book Reading entry form</div>
         </div>
