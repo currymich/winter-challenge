@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import * as actions from '../actions';
+import NewBibleMemoryForm from './goals/NewGoalForms.js';
 
 class Dashboard extends Component {
+  componentDidMount(){
+    this.props.fetchBibleReading();
+  }
 
   renderWelcome(){
     const {auth} = this.props;
@@ -14,7 +18,7 @@ class Dashboard extends Component {
       <div>
         <div style={{ textAlign: 'center' }}>
           <h3>{this.renderWelcome()}</h3>
-          <strong>Add completed goals below</strong>
+          <strong>You currently have {this.props.points} points</strong>
         </div>
 
         <div style={{ marginTop: '10em' }}>

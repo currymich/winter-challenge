@@ -3,10 +3,14 @@ import { Field, reduxForm } from 'redux-form';
 import renderField from './render';
 import * as actions from '../../actions';
 
+async function submitReading(values, history){
+  await actions.newBibleReading(values, history);
+}
+
 const NewBibleReadingForm = props => {
   const { handleSubmit, pristine, reset, submitting } = props
   return (
-    <form onSubmit={handleSubmit(actions.newBibleReading)}>
+    <form onSubmit={handleSubmit(submitReading)}>
       <Field
         name="book"
         type="text"
@@ -22,7 +26,7 @@ const NewBibleReadingForm = props => {
         placeholder = "1-5"
       />
       <div>
-        <button type="submit" disabled={submitting}>
+        <button type="submit" disabled={submitting} onClick={reset}>
           Submit
         </button>
         <button type="button" disabled={pristine || submitting} onClick={reset}>

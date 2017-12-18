@@ -11,6 +11,13 @@ export const fetchUser = () => {
   }
 };
 
+export const updateUserPoints = () => {
+  return async dispatch => {
+    const goals = await axios.get(`/goals/user`);
+    dispatch({type: UPDATE_USER_POINTS, payload: goals })
+  }
+}
+
 export const fetchMemorizedVerses = () => {
   return async dispatch => {
     const res = await axios.get('/goals/bible_memory');
@@ -25,9 +32,7 @@ export const fetchBibleReading = () => {
   }
 }
 
-//THIS IS BROKEN, CANT AUTO UPDATE BUT FORM SUB DOES WORK!!!!
 export const newBibleReading = (values, history) => {
-  axios.post('/goals/bible_reading', values).then(res => {
-    return ({type: UPDATE_USER_POINTS, payload: res.data})
-  });
+  axios.post('/goals/bible_reading', values);
+  return;
 };
