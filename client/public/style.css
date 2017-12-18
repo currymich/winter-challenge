@@ -1,7 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC');
+
 form a {
   margin-left: 10px;
 }
 
-body {
-  background-color: green;
-}
+#root .container{font-family: "Raleway",sans-serif; width: 100%;}
+
+.container div.nav-wrapper{background-color: #607d8b;}
+.container .nav-wrapper a.left.brand-logo{font-family: 'Amatic SC', cursive; text-transform:uppercase;}
+
+.login.btn{background-color: #d6635b;}
+
+.wc-landing--heading{padding:10% 5% 5%;}
+.wc-landing--heading h1{font-size: 3.2rem; text-transform: uppercase; margin:0;}
+
+.wc-landing--section{margin: 0 5% 5%;}

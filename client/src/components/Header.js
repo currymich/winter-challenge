@@ -10,13 +10,13 @@ class Header extends Component {
       case null:
         return;
       case false:
-        return <li><a className="waves-effect waves-light btn" href="/auth/google">Login</a></li>;
+        return <li><a className="login waves-effect waves-light btn" href="/auth/google">Login</a></li>;
       default:  //user IS logged in
         return (
           <ul>
             <li>{`${auth.name} (${this.props.points})`}</li>
             <li>
-              <a className="waves-effect waves-light btn" href="/api/logout">
+              <a className="logout waves-effect waves-light btn" href="/api/logout">
                 Logout
               </a>
             </li>
@@ -33,7 +33,7 @@ class Header extends Component {
             className="left brand-logo"
             to={this.props.auth ? '/dashboard' : '/'}
           >
-            Winter Challenge!
+            WINTER CHALLENGE
           </Link>
           <ul className="right">
             {this.renderLogin()}
