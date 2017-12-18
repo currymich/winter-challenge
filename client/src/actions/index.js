@@ -7,14 +7,14 @@ export const fetchUser = () => {
     dispatch({type: FETCH_USER, payload: user});
 
     const goals = await axios.get(`/goals/user`);
-    dispatch({type: UPDATE_USER_POINTS, payload: goals })
+    dispatch(updateUserPoints(goals))
   }
 };
 
-export const updateUserPoints = () => {
-  return async dispatch => {
-    const goals = await axios.get(`/goals/user`);
-    dispatch({type: UPDATE_USER_POINTS, payload: goals })
+export const updateUserPoints = (goals) => {
+  return {
+    type: UPDATE_USER_POINTS,
+    payload: goals
   }
 }
 
