@@ -17,7 +17,7 @@ const BibleReading = Goal.discriminator(
 	new Schema({
 		points: { type: Number, default: 2 },
 		book: String,
-		chapter: Number
+		chapter: String
 	})
 );
 

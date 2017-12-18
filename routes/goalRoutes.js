@@ -31,14 +31,15 @@ module.exports = app => {
 
 //bible reading routes
   app.post("/goals/bible_reading", async (req, res) => {
-    const { book, chapter } = req.body;
+    const { book, chapter , points} = req.body;
     const { googleId, name } = req.user;
     const newReading = await Goal.create({
       user_id: googleId,
       user_name: name,
       type: 'bibleReading',
       book,
-      chapter
+      chapter,
+      points
     });
 
     const userGoals = await Goal.find({user_id: req.user.googleId});
