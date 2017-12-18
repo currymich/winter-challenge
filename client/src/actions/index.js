@@ -38,12 +38,14 @@ export const fetchBibleReading = () => {
 };
 
 export function createGoal(values, type) {
-	const endpointUrl = type => {
+  console.log(values, type)
+
+  const endpointUrl = type => {
 		switch (type) {
 			case "bibleReading":
 				return "/goals/bible_reading";
 			case "bibleMemory":
-				return "/goals/bible_reading";
+				return "/goals/bible_memory";
 			case "bookReading":
 				return "/goals/book_reading";
 			case "exercise":
