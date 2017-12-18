@@ -42,7 +42,7 @@ module.exports = app => {
     });
 
     const userGoals = await Goal.find({user_id: req.user.googleId});
-    res.json({userGoals});
+    res.send(userGoals);
   });
 
   app.get("/goals/bible_reading", async (req, res) => {
