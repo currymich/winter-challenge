@@ -46,12 +46,17 @@ export function createGoal(values, type) {
 		}
 	};
 
-export function createGoal(values) {
-  return dispatch => {
-    axios.post('/goals/bible_reading', values)
-      .then(res => {
-          dispatch ({type: UPDATE_USER_POINTS, payload: res
-        })
-      })
+  if(type === "bibleReading" && values.chapter.includes('-')){
+    var chapters = values.chapter.split('-');
+    values.points = (chapters[1] - chapters[0] + 1) * 2;
   }
+
+	return dispatch => {
+		axios.post(`${endpointUrl(type)}`, values).then(res => {
+			dispatch({
+				type: UPDATE_USER_POINTS,
+				payload: res
+			});
+		});
+	};
 }
