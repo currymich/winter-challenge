@@ -14,7 +14,8 @@ module.exports = app => {
 		  verse: verse
 		});
 
-    res.json({req: req.body, newGoal: newMemorized});
+    const userGoals = await Goal.find({user_id: req.user.googleId});
+    res.send(userGoals);
 	});
 
 	app.get("/goals/bible_memory", async (req, res) => {
@@ -68,7 +69,8 @@ module.exports = app => {
       points
     });
 
-    res.json({req: req.body, newGoal: newExercise});
+    const userGoals = await Goal.find({user_id: req.user.googleId});
+    res.send(userGoals);
   });
 
   app.get("/goals/exercise", async (req, res) => {
@@ -95,7 +97,8 @@ module.exports = app => {
       points
     });
 
-    res.json({req: req.body, newGoal: newReading});
+    const userGoals = await Goal.find({user_id: req.user.googleId});
+    res.send(userGoals);
   });
 
   app.get("/goals/book_reading", async (req, res) => {
