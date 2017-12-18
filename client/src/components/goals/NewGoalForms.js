@@ -27,7 +27,10 @@ class NewBibleReadingForm extends Component {
 	}
 
   onSubmit(values) {
-    this.props.createGoal(values, 'bibleReading')
+    const {createGoal, reset} = this.props;
+
+    createGoal(values, 'bibleReading');
+    reset();
   }
 
 	render() {
@@ -44,7 +47,7 @@ class NewBibleReadingForm extends Component {
 				/>
 				<Field
 					name="chapter"
-					type="number"
+					type="text"
           label="Chapter"
           placeholder="1-5"
 					component={this.renderField}
