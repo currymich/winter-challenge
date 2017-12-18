@@ -32,7 +32,12 @@ export const fetchBibleReading = () => {
   }
 }
 
-export const newBibleReading = (values, history) => {
-  axios.post('/goals/bible_reading', values);
-  return;
-};
+export function createGoal(values) {
+  return dispatch => {
+    axios.post('/goals/bible_reading', values)
+      .then(res => {
+          dispatch ({type: UPDATE_USER_POINTS, payload: res
+        })
+      })
+  }
+}
