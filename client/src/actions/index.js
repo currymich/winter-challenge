@@ -54,9 +54,16 @@ export function createGoal(values, type) {
 		}
 	};
 
+//processing logic for bible reading type goals to allow multi-chp
   if(type === "bibleReading" && values.chapter.includes('-')){
     var chapters = values.chapter.split('-');
     values.points = (chapters[1] - chapters[0] + 1) * 2;
+  }
+
+//logic for book reading goals - split coded value from title
+  if(type === "bookReading"){
+    values.points = values.bookTitle.substr(0, 3);
+    values.book = values.bookTitle.substr(3);
   }
 
 	return dispatch => {
