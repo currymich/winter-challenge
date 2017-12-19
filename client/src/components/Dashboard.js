@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import NewBibleReadingForm from './goals/NewBibleReadingForm.js';
 import NewBibleMemoryForm from './goals/NewBibleMemoryForm.js';
+import NewBookReadingForm from './goals/NewBookReadingForm.js';
+
 
 
 
@@ -28,7 +30,7 @@ class Dashboard extends Component {
           <div><NewBibleMemoryForm/></div>
           <div><NewBibleReadingForm/></div>
           <div>Exercise entry form</div>
-          <div>Book Reading entry form</div>
+          <div><NewBookReadingForm/></div>
         </div>
       </div>
     );
