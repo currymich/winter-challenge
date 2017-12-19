@@ -50,7 +50,6 @@ export const fetchBibleReading = () => {
 };
 
 export function createGoal(values, type) {
-  console.log(values, type)
 
   const endpointUrl = type => {
 		switch (type) {

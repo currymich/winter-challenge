@@ -14,7 +14,6 @@ class Header extends Component {
       default:  //user IS logged in
         return (
           <ul>
-            <li>{`${auth.name} (${this.props.points})`}</li>
             <li>
               <a className="logout waves-effect waves-light btn" href="/api/logout">
                 Logout
