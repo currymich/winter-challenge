@@ -1,7 +1,57 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC');
+
+html{height:100%; background-color:#708090;}
+
+#root h1, #root h2, #root h3, #root h4, #root h5, #root h6{margin:0;}
+#root ul{margin:0;}
+
 form a {
   margin-left: 10px;
 }
 
-body {
-  background-color: green;
+#root .container{font-family: "Raleway",sans-serif; width: 100%;}
+
+.container div.nav-wrapper{background-color: #607d8b;}
+.container .nav-wrapper a.left.brand-logo{font-family: 'Amatic SC', cursive; text-transform:uppercase;}
+
+.login.btn{background-color: #d6635b;}
+
+.wc-landing--heading{
+	padding: 5%;
+	background-color: #fff;
+	background-image: url(http://papers.co/wallpaper/papers.co-mf34-snow-ski-mountain-winter-nature-36-3840x2400-4k-wallpaper.jpg);
+	background-size: cover;}
+
+.wc-landing--heading h1{font-size: 3.2rem; text-transform: uppercase; margin:0;}
+
+.wc-landing--section{color:#fff;}
+.wc-landing--section > p{margin: 5%;}
+
+.wc-landing--section.leaderboard h3{background-color: #e9967a; padding: 2% 5%;}
+
+.leaderboard-profile{
+	position: relative;
+	width: 90%;
+	height: 100px;
+	margin: 5% auto 0;
+	background-color: #fff;
+	color:#000;
+}
+
+#root ul.leaderboard-list{margin-bottom:5%;}
+.leaderboard-profile > div{float:left; text-align: center;}
+.leaderboard-rank{width:20%;line-height: 1.7;font-size: 4rem;}
+.leaderboard-name{width:45%;line-height: 4.8;font-size: 1.5rem;}
+.leaderboard-points{width:35%;line-height: 2.3;font-size: 3rem;}
+
+@media only screen and (min-width: 768px){
+	.nav-wrapper .brand-logo{margin-left: 2%;font-size: 3rem;}
+	.wc-landing--heading{height:450px;}
+	.wc-landing--heading h1{font-size: 6rem;}
+}
+
+@media only screen and (min-width: 1024px){
+	.wc-landing--heading{height:600px;}
+	.wc-landing--heading h1{font-size: 9rem;}
 }
