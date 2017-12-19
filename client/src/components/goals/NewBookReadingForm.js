@@ -24,7 +24,7 @@ class NewBookReadingForm extends Component {
 							<option value="100Case For Christmas">Case For Christmas</option>
 							<option value="100Chuck Colson">Any Chuck Colson Book</option>
 							<option value="100CS Lewis Fiction">CS Lewis Fiction</option>
-							<option value="100Shepherd looks">Shepherd looks at Psalm 23</option>
+							<option value="100Shepherd looks at Psalm 23">Shepherd looks at Psalm 23</option>
 							<option value="150Case for Grace">Case for Grace</option>
 							<option value="150Tactics">Tactics</option>
 							<option value="150Gospel">Gospel</option>
