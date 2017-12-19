@@ -1,7 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC');
+/** RESPONSIVE GRID STYLES START **/
 
-html{height:100%; background-color:#708090;}
+
+
+/** RESPONSIVE GRID STYLES END **/
+html{height:100%;}
+html body{background-color:#708090;}
 
 #root h1, #root h2, #root h3, #root h4, #root h5, #root h6{margin:0;}
 #root ul{margin:0;}
@@ -10,13 +15,18 @@ form a {
   margin-left: 10px;
 }
 
-#root .container{font-family: "Raleway",sans-serif; width: 100%;}
+form label{color:#333;}
 
-.container div.nav-wrapper{background-color: #607d8b;}
-.container .nav-wrapper a.left.brand-logo{font-family: 'Amatic SC', cursive; text-transform:uppercase;}
+.wc-main{font-family: "Raleway",sans-serif; width: 100%; margin:0; padding:0;}
+
+.wc-main div.nav-wrapper{background-color: #607d8b;}
+.wc-main .nav-wrapper a.left.brand-logo{font-family: 'Amatic SC', cursive; text-transform:uppercase;}
 
 .login.btn{background-color: #d6635b;}
+.login.btn:hover, .login.btn:focus{background-color: #b5544d;}
+.logout.btn{padding:0 15px;}
 
+/** LANDING PAGE STYLES **/
 .wc-landing--heading{
 	padding: 5%;
 	background-color: #fff;
@@ -26,7 +36,7 @@ form a {
 .wc-landing--heading h1{font-size: 3.2rem; text-transform: uppercase; margin:0;}
 
 .wc-landing--section{color:#fff;}
-.wc-landing--section > p{margin: 5%;}
+.wc-landing--section > p{font-size: 2rem; margin: 5%;}
 
 .wc-landing--section.leaderboard h3{background-color: #e9967a; padding: 2% 5%;}
 
@@ -39,24 +49,40 @@ form a {
 	color:#000;
 }
 
-.newGoalForm {
-  margin: 1em auto;
-  padding: 10px;
-  width: 75%;
-  border: 1px solid #eee;
-  border-radius: 5px;
-}
+/** DASHBOARD STYLES **/
+.wc-dashboard--header{text-align: center;background-color:#fff;padding:5%;}
+#root .wc-dashboard--header h3{margin-bottom:5%;}
+.wc-dashboard--header strong{font-size:2rem; line-height: 1;}
+.wc-dashboard--points{font-size:3rem;}
+.wc-dashboard--verses{background-color:#aa5555;}
+.wc-dashboard--bible{background-color:#666677;}
+.wc-dashboard--exercise{background-color:#557799;}
+.wc-dashboard--reading{background-color:#778866;}
+
+.newGoalForm {}
+
 .formTitle {
   padding: 1em 0;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 .newGoalForm form div:last-of-type {
-  margin: 0.5em 0;
+  margin-bottom: 5%;
 }
 .newGoalForm form button {
-  margin: 0 1em 0 0;
-  padding: 0.25em 1em;
+    margin: 0 1em 0 0;
+    padding: 0.25em 1em;
+    background-color: #333;
+    color: #fff;
+    border-radius: 3px;
+    text-transform: uppercase;
+    border: 0;
+    transition: 0.3s;
+    cursor: pointer;
 }
+
+.newGoalForm form button:hover{background-color: #fff;color: #333;}
 
 #root ul.leaderboard-list{margin-bottom:5%;}
 .leaderboard-profile > div{float:left; text-align: center;}
@@ -68,9 +94,12 @@ form a {
 	.nav-wrapper .brand-logo{margin-left: 2%;font-size: 3rem;}
 	.wc-landing--heading{height:450px;}
 	.wc-landing--heading h1{font-size: 6rem;}
+	.wc-dashboard--body [class*="col-"]{height:350px;}
+	.newGoalForm form button {margin: 0 .3em 0 0; padding: 0.25em 1em;}
 }
 
 @media only screen and (min-width: 1024px){
 	.wc-landing--heading{height:600px;}
 	.wc-landing--heading h1{font-size: 9rem;}
+	.newGoalForm form button {padding: 0.5em 1em;}
 }

@@ -19,29 +19,29 @@ class Dashboard extends Component {
 
 	render() {
 		return (
-			<div>
-				<div style={{ textAlign: "center" }}>
+			<div className='wc-dashboard--wrapper'>
+				<div className='wc-dashboard--header'>
 					<h3>{this.renderWelcome()}</h3>
-					<strong>You currently have {this.props.points} points</strong>
+					<strong>You currently have<br/><span className='wc-dashboard--points'>{this.props.points}</span> points</strong>
 				</div>
 
-				<div style={{ marginTop: "10em" }}>
-					<div className="newGoalForm">
+				<div className='wc-dashboard--body row'>
+          <div className="col-xs-12 col-sm-6 col-md-3 newGoalForm wc-dashboard--verses">  
             <h5 className="formTitle">New Memory Verse</h5>
 						<NewBibleMemoryForm />
-					</div>
-					<div className="newGoalForm">
+          </div>
+          <div className="col-xs-12 col-sm-6 col-md-3 newGoalForm wc-dashboard--bible">
             <h5 className="formTitle">New Bible Reading</h5>
 						<NewBibleReadingForm />
-					</div>
-					<div className="newGoalForm">
+          </div>
+          <div className="col-xs-12 col-sm-6 col-md-3 newGoalForm wc-dashboard--exercise">
             <h5 className="formTitle">New Exercise</h5>
 						<NewExerciseForm />
-					</div>
-					<div className="newGoalForm">
+          </div>
+          <div className="col-xs-12 col-sm-6 col-md-3 newGoalForm wc-dashboard--reading">
             <h5 className="formTitle">New Reading</h5>
 						<NewBookReadingForm />
-					</div>
+          </div>
 				</div>
 
         <div>
