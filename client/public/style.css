@@ -16,6 +16,8 @@ form a {
 .container .nav-wrapper a.left.brand-logo{font-family: 'Amatic SC', cursive; text-transform:uppercase;}
 
 .login.btn{background-color: #d6635b;}
+.login.btn:hover{background-color: #b5544d;}
+.logout.btn{padding:0 15px;}
 
 .wc-landing--heading{
 	padding: 5%;
