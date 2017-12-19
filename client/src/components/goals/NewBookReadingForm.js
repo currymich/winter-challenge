@@ -20,7 +20,7 @@ class NewBookReadingForm extends Component {
 					<label>Book Read</label>
 					<div>
 						<Field name="bookTitle" component="select" style={{display: 'block'}}>
-							<option>Select a book...</option>
+							<option>Please select a book...</option>
 							<option value="100Case For Christmas">Case For Christmas</option>
 							<option value="100Chuck Colson">Any Chuck Colson Book</option>
 							<option value="100CS Lewis Fiction">CS Lewis Fiction</option>
@@ -46,7 +46,7 @@ class NewBookReadingForm extends Component {
 					</div>
 				</div>
 				<div>
-					<button type="submit" disabled={submitting}>
+					<button type="submit" disabled={pristine || submitting}>
 						Submit
 					</button>
 					<button
@@ -63,5 +63,5 @@ class NewBookReadingForm extends Component {
 }
 
 export default reduxForm({
-	form: "newBibleReading"
+	form: "newBookReading"
 })(connect(null, actions)(NewBookReadingForm));

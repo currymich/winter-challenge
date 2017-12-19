@@ -44,6 +44,7 @@ class NewBibleMemoryForm extends Component {
           label="Verse"
           placeholder="Genesis 1:1"
 					component={this.renderField}
+					validate={required}
 				/>
 				<div>
 					<button type="submit" disabled={submitting}>
@@ -61,6 +62,8 @@ class NewBibleMemoryForm extends Component {
 		);
 	}
 }
+
+const required = value => (value ? undefined : 'Required')
 
 export default reduxForm({
 	form: "newBibleMemory"

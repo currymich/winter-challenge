@@ -44,6 +44,7 @@ class NewBibleReadingForm extends Component {
           label="Book of Bible"
           placeholder="Genesis"
 					component={this.renderField}
+					validate={required}
 				/>
 				<Field
 					name="chapter"
@@ -51,6 +52,7 @@ class NewBibleReadingForm extends Component {
           label="Chapter"
           placeholder="1-5"
 					component={this.renderField}
+					validate={required}
 				/>
 				<div>
 					<button type="submit" disabled={submitting}>
@@ -68,6 +70,8 @@ class NewBibleReadingForm extends Component {
 		);
 	}
 }
+
+const required = value => (value ? undefined : 'Required')
 
 export default reduxForm({
 	form: "newBibleReading"

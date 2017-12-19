@@ -44,6 +44,7 @@ class NewExerciseForm extends Component {
           label="Distance Ran (Miles)"
           placeholder="5"
 					component={this.renderField}
+					validate={required}
 				/>
 				<div>
 					<button type="submit" disabled={submitting}>
@@ -62,6 +63,8 @@ class NewExerciseForm extends Component {
 	}
 }
 
+const required = value => (value ? undefined : 'Required')
+
 export default reduxForm({
-	form: "newBibleReading"
+	form: "newExercise"
 })(connect(null, actions)(NewExerciseForm));
