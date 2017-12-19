@@ -42,6 +42,10 @@ class Dashboard extends Component {
 						<NewBookReadingForm />
 					</div>
 				</div>
+
+        <div>
+          <RecentGoals />
+        </div>
 			</div>
 		);
 	}
