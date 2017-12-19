@@ -4,7 +4,7 @@ import * as actions from '../actions';
 import NewBibleReadingForm from './goals/NewBibleReadingForm.js';
 import NewBibleMemoryForm from './goals/NewBibleMemoryForm.js';
 import NewBookReadingForm from './goals/NewBookReadingForm.js';
-
+import NewExerciseForm from './goals/NewExerciseForm.js';
 
 
 
@@ -29,7 +29,7 @@ class Dashboard extends Component {
         <div style={{ marginTop: '10em' }}>
           <div><NewBibleMemoryForm/></div>
           <div><NewBibleReadingForm/></div>
-          <div>Exercise entry form</div>
+          <div><NewExerciseForm/></div>
           <div><NewBookReadingForm/></div>
         </div>
       </div>

@@ -66,6 +66,11 @@ export function createGoal(values, type) {
     values.book = values.bookTitle.substr(3);
   }
 
+//logic for exercise - 10*(# of miles)
+  if(type === "exercise"){
+    values.points = values.distance * 10;
+  }
+
 	return dispatch => {
 		axios.post(`${endpointUrl(type)}`, values).then(res => {
 			dispatch({
