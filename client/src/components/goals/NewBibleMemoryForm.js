@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import * as actions from "../../actions";
 
-class NewBibleReadingForm extends Component {
+class NewBibleMemoryForm extends Component {
 	renderField(field) {
 		const {
 			input,
@@ -63,5 +63,5 @@ class NewBibleReadingForm extends Component {
 }
 
 export default reduxForm({
-	form: "newBibleReading"
-})(connect(null, actions)(NewBibleReadingForm));
+	form: "newBibleMemory"
+})(connect(null, actions)(NewBibleMemoryForm));

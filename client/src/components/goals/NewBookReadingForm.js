@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import * as actions from "../../actions";
 
-class NewBibleReadingForm extends Component {
+class NewBookReadingForm extends Component {
 	onSubmit(values) {
 		const { createGoal, reset } = this.props;
 
@@ -64,4 +64,4 @@ class NewBibleReadingForm extends Component {
 
 export default reduxForm({
 	form: "newBibleReading"
-})(connect(null, actions)(NewBibleReadingForm));
+})(connect(null, actions)(NewBookReadingForm));
