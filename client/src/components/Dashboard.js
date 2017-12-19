@@ -5,10 +5,11 @@ import NewBibleReadingForm from "./goals/NewBibleReadingForm.js";
 import NewBibleMemoryForm from "./goals/NewBibleMemoryForm.js";
 import NewBookReadingForm from "./goals/NewBookReadingForm.js";
 import NewExerciseForm from "./goals/NewExerciseForm.js";
+import RecentGoals from "./goals/recentGoalsIndex.js"
 
 class Dashboard extends Component {
 	componentDidMount() {
-		this.props.fetchBibleReading();
+		this.props.fetchUserGoals();
 	}
 
 	renderWelcome() {
