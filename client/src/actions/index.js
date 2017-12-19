@@ -89,6 +89,13 @@ export function createGoal(values, type) {
 				type: UPDATE_USER_POINTS,
 				payload: res
 			});
-		});
+
+      return res;
+		}).then(res => {
+      dispatch({
+        type: FETCH_USER_GOALS,
+        payload: res
+      })
+    })
 	};
 }
