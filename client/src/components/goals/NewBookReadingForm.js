@@ -20,7 +20,7 @@ class NewBookReadingForm extends Component {
 					<label>Book Read</label>
 					<div>
 						<Field name="bookTitle" component="select" style={{display: 'block'}}>
-							<option/>
+							<option>Select a book...</option>
 							<option value="100Case For Christmas">Case For Christmas</option>
 							<option value="100Chuck Colson">Any Chuck Colson Book</option>
 							<option value="100CS Lewis Fiction">CS Lewis Fiction</option>
