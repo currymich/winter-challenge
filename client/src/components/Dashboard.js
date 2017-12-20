@@ -14,7 +14,7 @@ class Dashboard extends Component {
 
 	renderWelcome() {
 		const { auth } = this.props;
-		return auth ? <p>Welcome back <br /><span className="wc-dashboard--user">{auth.name}</span></p> : <h3>User dashboard</h3>;
+		return auth ? <p>Welcome back <br /><span className="wc-dashboard--user">{auth.name}</span></p> : <h3>User dashboard <br /> Sign in to see your scores</h3>;
 	}
 
 	render() {
@@ -33,7 +33,7 @@ class Dashboard extends Component {
           </div>
           <div className="row">
             <div className="col-xs-12 col-sm-6 col-md-3">
-              <div className="newGoalForm wc-dashboard--verses">  
+              <div className="newGoalForm wc-dashboard--verses">
     						<NewBibleMemoryForm />
               </div>
             </div>
