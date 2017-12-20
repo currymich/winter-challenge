@@ -35,6 +35,12 @@ class RecentGoals extends Component {
   renderPosts() {
     let goals = this.sortGoalsByDate();
 
+    console.log(goals[0])
+
+    if(goals[0] === undefined){
+      return (<li>Enter your first goal below!</li>)
+    }
+
 		return _.map(goals.slice(0, 5), goal => {
       return (
 				<li className="list-item" key={goal._id}>
