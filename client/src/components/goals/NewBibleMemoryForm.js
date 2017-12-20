@@ -81,8 +81,6 @@ class NewBibleMemoryForm extends Component {
 	}
 }
 
-const required = value => (value ? undefined : 'Required')
-
 export default reduxForm({
 	form: "newBibleMemory"
 })(connect(null, actions)(NewBibleMemoryForm));
