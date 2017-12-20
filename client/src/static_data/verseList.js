@@ -2,7 +2,7 @@ const verseList = [
   { id: 1, reference: "Genesis 15:1-6" },
   { id: 2, reference: "Psalm 23:1-6" },
   { id: 3, reference: "Isaiah 40:27-31" },
-  { id: 4, reference: "Habakkuk 3:17-19" },
+  { id: 4, reference: "Habakkuk 3:17-18" },
   { id: 5, reference: "John 15:1-5" },
   { id: 6, reference: "Romans 8:1-3a" },
   { id: 7, reference: "1 Corinthians 9:24-27" },

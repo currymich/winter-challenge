@@ -34,29 +34,46 @@ class Dashboard extends Component {
           <div className="row">
             <div className="col-xs-12 col-sm-6 col-md-3">
               <div className="newGoalForm wc-dashboard--verses">  
-                <h5 className="formTitle">New Memory Verse</h5>
     						<NewBibleMemoryForm />
               </div>
             </div>
             <div className="col-xs-12 col-sm-6 col-md-3">
               <div className="newGoalForm wc-dashboard--bible">
-                <h5 className="formTitle">New Bible Reading</h5>
     						<NewBibleReadingForm />
               </div>
             </div>
             <div className="col-xs-12 col-sm-6 col-md-3">
               <div className="newGoalForm wc-dashboard--exercise">
-                <h5 className="formTitle">New Exercise</h5>
     						<NewExerciseForm />
               </div>
             </div>
             <div className="col-xs-12 col-sm-6 col-md-3">
               <div className="newGoalForm wc-dashboard--reading">
-                <h5 className="formTitle">New Reading</h5>
     						<NewBookReadingForm />
               </div>
             </div>
           </div>
+          {/*
+          <div className='wc-landing--section leaderboard'>
+            <h3>Leaderboard</h3>
+            <ul className='leaderboard-list'>
+              <li className='leaderboard-profile'>
+                <div className='leaderboard-rank'>1</div>
+                <div className='leaderboard-name'>Ming Mang</div>
+                <div className='leaderboard-points'>300</div>
+              </li>
+              <li className='leaderboard-profile'>
+                <div className='leaderboard-rank'>2</div>
+                <div className='leaderboard-name'>Ching Chang</div>
+                <div className='leaderboard-points'>200</div>
+              </li>
+              <li className='leaderboard-profile'>
+                <div className='leaderboard-rank'>3</div>
+                <div className='leaderboard-name'>Ding Dang</div>
+                <div className='leaderboard-points'>100</div>
+              </li>
+            </ul>
+          </div>*/}
 				</div>
 
 			</div>

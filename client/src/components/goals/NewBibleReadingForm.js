@@ -20,7 +20,7 @@ class NewBibleReadingForm extends Component {
 				<label>{label}</label>
 				<div>
 					<input {...input} placeholder={placeholder} type={type} />
-					<div className="red-text" style={{ marginBottom: "20px" }}>
+					<div className="red-text">
 						{touched && error}
 					</div>
 				</div>
@@ -54,6 +54,7 @@ class NewBibleReadingForm extends Component {
     return (
 			<form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
 				<div>
+					<h5 className="formTitle">New Reading</h5>
 					<label>Book of the Bible</label>
 					<Field
 						name="book"
@@ -72,7 +73,7 @@ class NewBibleReadingForm extends Component {
 					component={this.renderField}
 					validate={required}
 				/>
-				<div>
+				<div className="form-buttons">
 					<button type="submit" disabled={submitting}>
 						Submit
 					</button>
@@ -81,7 +82,7 @@ class NewBibleReadingForm extends Component {
 						disabled={pristine || submitting}
 						onClick={reset}
 					>
-						Clear Values
+						Clear
 					</button>
 				</div>
 			</form>
