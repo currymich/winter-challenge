@@ -5,6 +5,8 @@ const cookieSession = require("cookie-session");
 const passport = require("passport");
 const path = require('path');
 const bodyParser = require('body-parser');
+const logger = require('morgan');
+
 
 // Local Packages
 const keys = require("./config/keys");
@@ -36,7 +38,7 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')))
 
 // Route Files
