@@ -1,6 +1,7 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import moment from "moment";
 
 class RecentGoals extends Component {
   sortGoalsByDate() {
@@ -13,7 +14,7 @@ class RecentGoals extends Component {
   }
 
   renderDate(date){
-    return new Date(date).toDateString().substr(0, 10);
+    return moment(date).format('ddd MMM DD [-] h:mm A');
   }
 
   typeToAction = goal => {
@@ -37,7 +38,7 @@ class RecentGoals extends Component {
 		return _.map(goals.slice(0, 5), goal => {
       return (
 				<li className="list-item" key={goal._id}>
-          {this.renderDate(goal.date_created)} - {this.typeToAction(goal)}
+          {this.renderDate(goal.date_created)} <br/> {this.typeToAction(goal)}
         </li>
 			);
 		});
