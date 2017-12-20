@@ -100,8 +100,6 @@ export function createGoal(values, type) {
 }
 
 export function deleteGoal(id) {
-
-  console.log(id)
   return dispatch => {
     axios.delete(`/goals/${id}`)
     .then(res => {
