@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import * as actions from "../../actions";
+import verseList from '../../static_data/verseList'
+import _ from 'lodash';
 
 class NewBibleMemoryForm extends Component {
 	renderField(field) {
@@ -33,20 +35,36 @@ class NewBibleMemoryForm extends Component {
     reset();
   }
 
+	renderVerses() {
+		return _.map(verseList, verse => {
+			return (
+				<option
+					value={`${verse.reference}`}
+					key={`${verse.id}`}
+				>
+					{verse.reference}
+				</option>
+			);
+		});
+	}
+
 	render() {
 		const { handleSubmit, pristine, reset, submitting } = this.props;
 
     return (
 			<form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-				<h5 className="formTitle">New Memory Verse</h5>
-				<Field
-					name="verse"
-					type="text"
-          label="Verse"
-          placeholder="Genesis 1:1"
-					component={this.renderField}
-					validate={required}
-				/>
+				<div>
+				        <h5 className="formTitle">New Memory Verse</h5>
+					<label>Verse Memorized</label>
+					<Field
+						name="verse"
+						component="select"
+						style={{ display: "block" }}
+					>
+						<option>Please select a verse...</option>
+						{this.renderVerses()}
+					</Field>
+				</div>
 				<div className="form-buttons">
 					<button type="submit" disabled={submitting}>
 						Submit
