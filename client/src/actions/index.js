@@ -98,3 +98,23 @@ export function createGoal(values, type) {
     })
 	};
 }
+
+export function deleteGoal(id) {
+
+  console.log(id)
+  return dispatch => {
+    axios.delete(`/goals/${id}`)
+    .then(res => {
+			dispatch({
+				type: UPDATE_USER_POINTS,
+				payload: res
+			})
+      return res;
+		}).then(res => {
+      dispatch({
+        type: FETCH_USER_GOALS,
+        payload: res
+      })
+    })
+  }
+}
