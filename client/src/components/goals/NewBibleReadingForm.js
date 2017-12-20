@@ -91,7 +91,7 @@ class NewBibleReadingForm extends Component {
 	}
 }
 
-const required = value => (value && value != "" ? undefined : 'Required')
+const required = value => (value && value !== "" ? undefined : 'Required')
 
 export default reduxForm({
 	form: "newBibleReading"
