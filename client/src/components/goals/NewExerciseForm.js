@@ -45,7 +45,7 @@ class NewExerciseForm extends Component {
           label="Distance Ran (Miles)"
           placeholder="5"
 					component={this.renderField}
-					validate={required}
+					validate={positive}
 				/>
 				<div className="form-buttons">
 					<button type="submit" disabled={submitting}>
@@ -64,7 +64,7 @@ class NewExerciseForm extends Component {
 	}
 }
 
-const required = value => (value ? undefined : 'Required')
+const positive = value => (value > 0 ? undefined : 'Enter a positive number')
 
 export default reduxForm({
 	form: "newExercise"
