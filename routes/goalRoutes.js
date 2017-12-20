@@ -129,9 +129,11 @@ module.exports = app => {
   });
 
 //generic delete route
-  app.delete("/goals", async (req, res) => {
-    const goal = await Goal.findByIdAndRemove({_id: req.body.goalId});
+  app.delete("/goals/:_id", async (req, res) => {
+    const { _id } = req.params;
+    const goal = await Goal.findByIdAndRemove({ _id });
 
-    res.json({goal: goal})
+    const userGoals = await Goal.find({user_id: req.user.googleId});
+    res.send(userGoals);
   });
 };
