@@ -53,8 +53,8 @@ class NewBibleMemoryForm extends Component {
 
     return (
 			<form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+				<h5 className="formTitle">New Memory Verse</h5>
 				<div>
-				        <h5 className="formTitle">New Memory Verse</h5>
 					<label>Verse Memorized</label>
 					<Field
 						name="verse"
