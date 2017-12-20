@@ -64,7 +64,8 @@ form label{color:#333;}
     background-position-y: 90%;
 	background-size: cover;}
 .wc-dashboard--header > div{padding: 5%;margin-bottom:8%;background-color: rgba(0,0,0,0.6);color: #fff;}
-.wc-dashboard--header h3{margin-bottom:5%;}
+.wc-dashboard--header > div p{margin-bottom:5%; font-size:2rem;}
+.wc-dashboard--header .wc-dashboard--user{font-size:2.5rem; line-height: 1; letter-spacing:3px;}
 .wc-dashboard--header strong{font-size:2rem; line-height: 1.2;}
 .wc-dashboard--wrapper .wc-dashboard--body{margin-bottom:0;}
 .wc-dashboard--points{font-size:3rem;font-family: "Futura", futura, "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;color: #ffe400;}
@@ -73,7 +74,7 @@ form label{color:#333;}
 .wc-dashboard--exercise{background-color:#557799;}
 .wc-dashboard--reading{background-color:#778866;}
 
-.wc-dashboard--recent{text-align:left; margin-top:8%; margin-bottom:8%;}
+.wc-dashboard--recent{text-align:left; margin-top:8%; margin-bottom:8%; padding: 0 5%;}
 .wc-dashboard--recent h3{
 	font-size:1rem; 
 	font-weight: bold; 
@@ -90,11 +91,19 @@ form label{color:#333;}
     border-radius: 5px;
     padding: 3%;}
 .wc-dashboard--recent .list li{line-height:2;}
+.wc-dashboard--body .row{max-width:1200px}
+.wc-dashboard--body .col-md-3{margin-bottom: 10%;}
 
 .formTitle {
   padding: 1em 0;
   text-transform: uppercase;
   font-weight: bold;
+}
+
+.newGoalForm{
+    border: 2px solid #fff;
+    border-radius: 10px;
+    padding: 0 5%;
 }
 
 .newGoalForm form{
@@ -130,7 +139,9 @@ ul.leaderboard-list{max-width: 600px; margin: 0 auto 5%;}
 @media only screen and (min-width: 768px){
 	.nav-wrapper .brand-logo{margin-left: 2%;font-size: 3rem;}
 	.wc-landing--heading h1{font-size: 6rem;}
-	.wc-dashboard--body [class*="newGoalForm"]{height:330px;}
+	.wc-dashboard--header > div p{letter-spacing: 3px;}
+	.wc-dashboard--header .wc-dashboard--user{font-size:4rem; line-height: 1; letter-spacing:4px;}
+	.wc-dashboard--body .newGoalForm{height:330px;}
 	.wc-dashboard--recent{margin-top:5%; margin-bottom:5%;}
 	.wc-dashboard--recent h3{font-size:1.5rem; letter-spacing: 4px;}
 	.wc-dashboard--recent .list li{font-size:1.3rem;}
@@ -144,4 +155,6 @@ ul.leaderboard-list{max-width: 600px; margin: 0 auto 5%;}
 
 	.wc-dashboard--recent{text-align:left; margin-top:3%; margin-bottom:3%;}
 	.wc-dashboard--recent h3{font-size:2rem;}
+
+	.wc-dashboard--body .col-md-3{margin-bottom: 0;}
 }

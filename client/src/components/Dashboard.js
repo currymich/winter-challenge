@@ -14,7 +14,7 @@ class Dashboard extends Component {
 
 	renderWelcome() {
 		const { auth } = this.props;
-		return auth ? `Welcome back ${auth.name}` : `User dashboard`;
+		return auth ? <p>Welcome back <br /><span className="wc-dashboard--user">{auth.name}</span></p> : <h3>User dashboard</h3>;
 	}
 
 	render() {
@@ -22,30 +22,40 @@ class Dashboard extends Component {
 			<div className='wc-dashboard--wrapper'>
 				<div className='wc-dashboard--header'>
           <div>
-					<h3>{this.renderWelcome()}</h3>
+					{this.renderWelcome()}
 					<strong>You currently have<br/><span className='wc-dashboard--points'>{this.props.points}</span> points</strong>
           </div>
 				</div>
 
-				<div className='wc-dashboard--body row'>
-          <div className="col-xs-12 wc-dashboard--recent">
+				<div className='wc-dashboard--body'>
+          <div className="wc-dashboard--recent">
             <RecentGoals />
           </div>
-          <div className="col-xs-12 col-sm-6 col-md-3 newGoalForm wc-dashboard--verses">  
-            <h5 className="formTitle">New Memory Verse</h5>
-						<NewBibleMemoryForm />
-          </div>
-          <div className="col-xs-12 col-sm-6 col-md-3 newGoalForm wc-dashboard--bible">
-            <h5 className="formTitle">New Bible Reading</h5>
-						<NewBibleReadingForm />
-          </div>
-          <div className="col-xs-12 col-sm-6 col-md-3 newGoalForm wc-dashboard--exercise">
-            <h5 className="formTitle">New Exercise</h5>
-						<NewExerciseForm />
-          </div>
-          <div className="col-xs-12 col-sm-6 col-md-3 newGoalForm wc-dashboard--reading">
-            <h5 className="formTitle">New Reading</h5>
-						<NewBookReadingForm />
+          <div className="row">
+            <div className="col-xs-12 col-sm-6 col-md-3">
+              <div className="newGoalForm wc-dashboard--verses">  
+                <h5 className="formTitle">New Memory Verse</h5>
+    						<NewBibleMemoryForm />
+              </div>
+            </div>
+            <div className="col-xs-12 col-sm-6 col-md-3">
+              <div className="newGoalForm wc-dashboard--bible">
+                <h5 className="formTitle">New Bible Reading</h5>
+    						<NewBibleReadingForm />
+              </div>
+            </div>
+            <div className="col-xs-12 col-sm-6 col-md-3">
+              <div className="newGoalForm wc-dashboard--exercise">
+                <h5 className="formTitle">New Exercise</h5>
+    						<NewExerciseForm />
+              </div>
+            </div>
+            <div className="col-xs-12 col-sm-6 col-md-3">
+              <div className="newGoalForm wc-dashboard--reading">
+                <h5 className="formTitle">New Reading</h5>
+    						<NewBookReadingForm />
+              </div>
+            </div>
           </div>
 				</div>
 
