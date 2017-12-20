@@ -2,6 +2,7 @@ import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import moment from "moment";
+import * as actions from '../../actions';
 
 class RecentGoals extends Component {
   sortGoalsByDate() {
@@ -34,7 +35,7 @@ class RecentGoals extends Component {
 
   renderPosts() {
     let goals = this.sortGoalsByDate();
-    
+
     if(goals[0] === undefined){
       return (<li>Enter your first goal below!</li>)
     }
@@ -42,11 +43,25 @@ class RecentGoals extends Component {
 		return _.map(goals.slice(0, 5), goal => {
       return (
 				<li className="list-item" key={goal._id}>
-          {this.renderDate(goal.date_created)} <br/> {this.typeToAction(goal)}
+          <div>
+            {this.renderDate(goal.date_created)} <br/> {this.typeToAction(goal)}
+          </div>
+          <div>
+            <button
+              className="btn btn-danger pull-xs-right"
+              onClick={() => {this.onDeleteClick(`${goal._id}`)}}
+            >
+              Delete
+            </button>
+          </div>
         </li>
 			);
 		});
 	}
+
+  onDeleteClick(id) {
+    this.props.deleteGoal(id);
+  }
 
 	render() {
 		return (
@@ -62,4 +77,4 @@ function mapStateToProps(state) {
 	return { goals: state.goals };
 }
 
-export default connect(mapStateToProps)(RecentGoals);
+export default connect(mapStateToProps, actions)(RecentGoals);
