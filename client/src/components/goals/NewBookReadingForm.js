@@ -13,12 +13,19 @@ class NewBookReadingForm extends Component {
 		reset();
 	}
 
+  alreadyRead(title) {
+    let {goals} = this.props;
+    let titlesRead = goals.filter(goal => goal.type === 'bookReading').map(function(goal) { return goal.book; });
+    return (titlesRead.includes(title));
+  }
+
 	renderBooks() {
 		return _.map(bookList, book => {
 			return (
 				<option
 					value={`${book.points}${book.bookTitle}`}
 					key={`${book.bookTitle}`}
+              disabled={this.alreadyRead(`${book.bookTitle}`)}
 				>
 					{book.bookTitle}
 				</option>
@@ -28,7 +35,6 @@ class NewBookReadingForm extends Component {
 
 	render() {
 		const { handleSubmit, pristine, reset, submitting } = this.props;
-
 		return (
 			<form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
 				<h5 className="formTitle">New Bible Reading</h5>
