@@ -60,8 +60,9 @@ class NewBibleReadingForm extends Component {
 						name="book"
 						component="select"
 						style={{ display: "block" }}
+						validate={required}
 					>
-						<option>Please select a book...</option>
+						<option value="">Please select a book...</option>
 						{this.renderBibleBooks()}
 					</Field>
 				</div>
@@ -90,7 +91,7 @@ class NewBibleReadingForm extends Component {
 	}
 }
 
-const required = value => (value ? undefined : 'Required')
+const required = value => (value && value != "" ? undefined : 'Required')
 
 export default reduxForm({
 	form: "newBibleReading"

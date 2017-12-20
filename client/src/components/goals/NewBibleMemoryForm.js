@@ -47,6 +47,7 @@ class NewBibleMemoryForm extends Component {
 				<option
 					value={`${verse.reference}`}
 					key={`${verse.id}`}
+					validate={required}
 					disabled={this.alreadyMemorized(`${verse.reference}`)}
 				>
 					{verse.reference}
@@ -67,8 +68,9 @@ class NewBibleMemoryForm extends Component {
 						name="verse"
 						component="select"
 						style={{ display: "block" }}
+						validate={required}
 					>
-						<option>Please select a verse...</option>
+						<option value="">Please select a verse...</option>
 						{this.renderVerses()}
 					</Field>
 				</div>
@@ -88,6 +90,8 @@ class NewBibleMemoryForm extends Component {
 		);
 	}
 }
+
+const required = value => (value && value != "" ? undefined : 'Required')
 
 function mapStateToProps(state) {
 	return { goals: state.goals };
