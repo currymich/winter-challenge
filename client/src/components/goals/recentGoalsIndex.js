@@ -34,9 +34,7 @@ class RecentGoals extends Component {
 
   renderPosts() {
     let goals = this.sortGoalsByDate();
-
-    console.log(goals[0])
-
+    
     if(goals[0] === undefined){
       return (<li>Enter your first goal below!</li>)
     }

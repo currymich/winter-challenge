@@ -18,7 +18,7 @@ class NewExerciseForm extends Component {
 				<label>{label}</label>
 				<div>
 					<input {...input} placeholder={placeholder} type={type} />
-					<div className="red-text"sds_absolute-centered>
+					<div className="red-text">
 						{touched && error}
 					</div>
 				</div>
