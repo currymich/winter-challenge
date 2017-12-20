@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import * as actions from "../../actions";
+import bibleBookList from "../../static_data/bibleBookList"
+import _ from 'lodash';
 
 class NewBibleReadingForm extends Component {
 	renderField(field) {
@@ -33,19 +35,35 @@ class NewBibleReadingForm extends Component {
     reset();
   }
 
+	renderBibleBooks() {
+		return _.map(bibleBookList, book => {
+			return (
+				<option
+					value={`${book.title}`}
+					key={`${book.id}`}
+				>
+					{book.title}
+				</option>
+			);
+		});
+	}
+
 	render() {
 		const { handleSubmit, pristine, reset, submitting } = this.props;
 
     return (
 			<form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-				<Field
-					name="book"
-					type="text"
-          label="Book of Bible"
-          placeholder="Genesis"
-					component={this.renderField}
-					validate={required}
-				/>
+				<div>
+					<label>Book of the Bible</label>
+					<Field
+						name="book"
+						component="select"
+						style={{ display: "block" }}
+					>
+						<option>Please select a book...</option>
+						{this.renderBibleBooks()}
+					</Field>
+				</div>
 				<Field
 					name="chapter"
 					type="text"
