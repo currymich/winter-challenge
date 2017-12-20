@@ -54,7 +54,7 @@ class NewBibleReadingForm extends Component {
     return (
 			<form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
 				<div>
-					<h5 className="formTitle">New Reading</h5>
+					<h5 className="formTitle">New Bible Reading</h5>
 					<label>Book of the Bible</label>
 					<Field
 						name="book"

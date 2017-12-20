@@ -37,7 +37,7 @@ class NewBookReadingForm extends Component {
 		const { handleSubmit, pristine, reset, submitting } = this.props;
 		return (
 			<form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-				<h5 className="formTitle">New Bible Reading</h5>
+				<h5 className="formTitle">New Reading</h5>
 				<div>
 					<label>Book Read</label>
 					<div>
