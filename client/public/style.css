@@ -8,8 +8,8 @@
 html{height:100%;}
 html body{background-color:#708090;}
 
-#root h1, #root h2, #root h3, #root h4, #root h5, #root h6{margin:0;}
-#root ul{margin:0;}
+div h1, div h2, div h3, div h4, div h5, div h6{margin:0;}
+div ul{margin:0;}
 
 form a {
   margin-left: 10px;
@@ -28,16 +28,20 @@ form label{color:#333;}
 
 /** LANDING PAGE STYLES **/
 .wc-landing--heading{
-	padding: 5%;
+	padding: 10% 5%;
 	background-color: #fff;
-	background-image: url(http://papers.co/wallpaper/papers.co-mf34-snow-ski-mountain-winter-nature-36-3840x2400-4k-wallpaper.jpg);
-	background-size: cover;}
+	background-image: url('./main-wallpaper.jpg');
+    background-position-x: center;
+    background-position-y: 90%;
+	background-size: cover;
+}
 
 .wc-landing--heading h1{font-size: 3.2rem; text-transform: uppercase; margin:0;}
 
 .wc-landing--section{color:#fff;}
-.wc-landing--section > p{font-size: 2rem; margin: 5%;}
+.wc-landing--section > p{font-size: 1.8rem; margin: 5%;}
 
+.wc-landing--section.leaderboard{text-align: center;}
 .wc-landing--section.leaderboard h3{background-color: #e9967a; padding: 2% 5%;}
 
 .leaderboard-profile{
@@ -50,21 +54,54 @@ form label{color:#333;}
 }
 
 /** DASHBOARD STYLES **/
-.wc-dashboard--header{text-align: center;background-color:#fff;padding:5%;}
-#root .wc-dashboard--header h3{margin-bottom:5%;}
-.wc-dashboard--header strong{font-size:2rem; line-height: 1;}
-.wc-dashboard--points{font-size:3rem;}
+.wc-dashboard--header{
+	text-align: center;
+	padding:5%;
+	color:#fff;
+	background-color: #000;
+	background-image: url('./dashboard-bg.jpg');
+    background-position-x: center;
+    background-position-y: 90%;
+	background-size: cover;}
+.wc-dashboard--header > div{padding: 5%;margin-bottom:8%;background-color: rgba(0,0,0,0.6);color: #fff;}
+.wc-dashboard--header h3{margin-bottom:5%;}
+.wc-dashboard--header strong{font-size:2rem; line-height: 1.2;}
+.wc-dashboard--wrapper .wc-dashboard--body{margin-bottom:0;}
+.wc-dashboard--points{font-size:3rem;font-family: "Futura", futura, "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;color: #ffe400;}
 .wc-dashboard--verses{background-color:#aa5555;}
 .wc-dashboard--bible{background-color:#666677;}
 .wc-dashboard--exercise{background-color:#557799;}
 .wc-dashboard--reading{background-color:#778866;}
 
-.newGoalForm {}
+.wc-dashboard--recent{text-align:left; margin-top:8%; margin-bottom:8%;}
+.wc-dashboard--recent h3{
+	font-size:1rem; 
+	font-weight: bold; 
+	text-transform: uppercase; 
+    letter-spacing: 2px;
+	margin-bottom:2%;
+	color: #fff;}
+.wc-dashboard--recent > div{max-width: 768px; margin:0 auto;}
+
+.wc-dashboard--recent .list{
+	background-color: #000;
+	color:#fff;
+    border: 3px solid #fff;
+    border-radius: 5px;
+    padding: 3%;}
+.wc-dashboard--recent .list li{line-height:2;}
 
 .formTitle {
   padding: 1em 0;
   text-transform: uppercase;
   font-weight: bold;
+}
+
+.newGoalForm form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%
 }
 
 .newGoalForm form div:last-of-type {
@@ -84,7 +121,7 @@ form label{color:#333;}
 
 .newGoalForm form button:hover{background-color: #fff;color: #333;}
 
-#root ul.leaderboard-list{margin-bottom:5%;}
+ul.leaderboard-list{max-width: 600px; margin: 0 auto 5%;}
 .leaderboard-profile > div{float:left; text-align: center;}
 .leaderboard-rank{width:20%;line-height: 1.7;font-size: 4rem;}
 .leaderboard-name{width:45%;line-height: 4.8;font-size: 1.5rem;}
@@ -92,14 +129,19 @@ form label{color:#333;}
 
 @media only screen and (min-width: 768px){
 	.nav-wrapper .brand-logo{margin-left: 2%;font-size: 3rem;}
-	.wc-landing--heading{height:450px;}
 	.wc-landing--heading h1{font-size: 6rem;}
-	.wc-dashboard--body [class*="col-"]{height:350px;}
+	.wc-dashboard--body [class*="newGoalForm"]{height:330px;}
+	.wc-dashboard--recent{margin-top:5%; margin-bottom:5%;}
+	.wc-dashboard--recent h3{font-size:1.5rem; letter-spacing: 4px;}
+	.wc-dashboard--recent .list li{font-size:1.3rem;}
+
 	.newGoalForm form button {margin: 0 .3em 0 0; padding: 0.25em 1em;}
 }
 
 @media only screen and (min-width: 1024px){
-	.wc-landing--heading{height:600px;}
 	.wc-landing--heading h1{font-size: 9rem;}
 	.newGoalForm form button {padding: 0.5em 1em;}
+
+	.wc-dashboard--recent{text-align:left; margin-top:3%; margin-bottom:3%;}
+	.wc-dashboard--recent h3{font-size:2rem;}
 }

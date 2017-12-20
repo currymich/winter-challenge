@@ -21,11 +21,16 @@ class Dashboard extends Component {
 		return (
 			<div className='wc-dashboard--wrapper'>
 				<div className='wc-dashboard--header'>
+          <div>
 					<h3>{this.renderWelcome()}</h3>
 					<strong>You currently have<br/><span className='wc-dashboard--points'>{this.props.points}</span> points</strong>
+          </div>
 				</div>
 
 				<div className='wc-dashboard--body row'>
+          <div className="col-xs-12 wc-dashboard--recent">
+            <RecentGoals />
+          </div>
           <div className="col-xs-12 col-sm-6 col-md-3 newGoalForm wc-dashboard--verses">  
             <h5 className="formTitle">New Memory Verse</h5>
 						<NewBibleMemoryForm />
@@ -44,9 +49,6 @@ class Dashboard extends Component {
           </div>
 				</div>
 
-        <div>
-          <RecentGoals />
-        </div>
 			</div>
 		);
 	}

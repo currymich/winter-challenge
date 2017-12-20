@@ -5,7 +5,7 @@ const Landing = () => {
     <div className='wc-landing--wrapper'>
       <div className='wc-landing--heading'>
         <h1>
-          Element Winter Challenge
+          Element<br/>Winter<br/>Challenge
         </h1>
       </div>
       <div className='wc-landing--section'>
