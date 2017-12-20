@@ -25,7 +25,7 @@ class NewBookReadingForm extends Component {
 				<option
 					value={`${book.points}${book.bookTitle}`}
 					key={`${book.bookTitle}`}
-              disabled={this.alreadyRead(`${book.bookTitle}`)}
+          disabled={this.alreadyRead(`${book.bookTitle}`)}
 				>
 					{book.bookTitle}
 				</option>

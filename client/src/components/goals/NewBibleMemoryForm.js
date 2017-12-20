@@ -28,6 +28,12 @@ class NewBibleMemoryForm extends Component {
 		);
 	}
 
+	alreadyMemorized(reference) {
+		let {goals} = this.props;
+		let versesMemorized = goals.filter(goal => goal.type === 'bibleMemory').map(function(goal) { return goal.verse; });
+		return (versesMemorized.includes(reference));
+	}
+
   onSubmit(values) {
     const {createGoal, reset} = this.props;
 
@@ -41,6 +47,7 @@ class NewBibleMemoryForm extends Component {
 				<option
 					value={`${verse.reference}`}
 					key={`${verse.id}`}
+					disabled={this.alreadyMemorized(`${verse.reference}`)}
 				>
 					{verse.reference}
 				</option>
@@ -82,6 +89,10 @@ class NewBibleMemoryForm extends Component {
 	}
 }
 
+function mapStateToProps(state) {
+	return { goals: state.goals };
+}
+
 export default reduxForm({
 	form: "newBibleMemory"
-})(connect(null, actions)(NewBibleMemoryForm));
+})(connect(mapStateToProps, actions)(NewBibleMemoryForm));
