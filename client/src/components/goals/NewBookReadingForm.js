@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import * as actions from "../../actions";
-import bookList from '../../static_data/bookList.js'
+import bookList from "../../static_data/bookList.js";
+import _ from "lodash";
 
 class NewBookReadingForm extends Component {
 	onSubmit(values) {
@@ -12,15 +13,17 @@ class NewBookReadingForm extends Component {
 		reset();
 	}
 
-	componentDidMount(){
-		console.log(bookList)
-	}
-
 	renderBooks() {
-		return bookList.forEach(book => {
-			// const read = !!(goals.)
-			return `<option value='${book.points}${book.bookTitle}'>${book.bookTitle}</option>`
-		})
+		return _.map(bookList, book => {
+			return (
+				<option
+					value={`${book.points}${book.bookTitle}`}
+					key={`${book.bookTitle}`}
+				>
+					{book.bookTitle}
+				</option>
+			);
+		});
 	}
 
 	render() {
@@ -31,9 +34,13 @@ class NewBookReadingForm extends Component {
 				<div>
 					<label>Book Read</label>
 					<div>
-						<Field name="bookTitle" component="select" style={{display: 'block'}}>
+						<Field
+							name="bookTitle"
+							component="select"
+							style={{ display: "block" }}
+						>
 							<option>Please select a book...</option>
-							{this.renderBooks}
+							{this.renderBooks()}
 						</Field>
 					</div>
 				</div>
@@ -54,8 +61,8 @@ class NewBookReadingForm extends Component {
 	}
 }
 
-function mapStateToProps(state){
-	return { goals: state.goals }
+function mapStateToProps(state) {
+	return { goals: state.goals };
 }
 
 export default reduxForm({
