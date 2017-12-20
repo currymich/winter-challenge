@@ -34,25 +34,21 @@ class Dashboard extends Component {
           <div className="row">
             <div className="col-xs-12 col-sm-6 col-md-3">
               <div className="newGoalForm wc-dashboard--verses">  
-                <h5 className="formTitle">New Memory Verse</h5>
     						<NewBibleMemoryForm />
               </div>
             </div>
             <div className="col-xs-12 col-sm-6 col-md-3">
               <div className="newGoalForm wc-dashboard--bible">
-                <h5 className="formTitle">New Bible Reading</h5>
     						<NewBibleReadingForm />
               </div>
             </div>
             <div className="col-xs-12 col-sm-6 col-md-3">
               <div className="newGoalForm wc-dashboard--exercise">
-                <h5 className="formTitle">New Exercise</h5>
     						<NewExerciseForm />
               </div>
             </div>
             <div className="col-xs-12 col-sm-6 col-md-3">
               <div className="newGoalForm wc-dashboard--reading">
-                <h5 className="formTitle">New Reading</h5>
     						<NewBookReadingForm />
               </div>
             </div>

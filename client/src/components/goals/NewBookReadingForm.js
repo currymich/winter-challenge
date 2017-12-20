@@ -16,6 +16,7 @@ class NewBookReadingForm extends Component {
 
 		return (
 			<form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+				<h5 className="formTitle">New Bible Reading</h5>
 				<div>
 					<label>Book Read</label>
 					<div>
@@ -45,7 +46,7 @@ class NewBookReadingForm extends Component {
 						</Field>
 					</div>
 				</div>
-				<div>
+				<div className="form-buttons">
 					<button type="submit" disabled={pristine || submitting}>
 						Submit
 					</button>
@@ -54,7 +55,7 @@ class NewBookReadingForm extends Component {
 						disabled={pristine || submitting}
 						onClick={reset}
 					>
-						Clear Values
+						Clear
 					</button>
 				</div>
 			</form>

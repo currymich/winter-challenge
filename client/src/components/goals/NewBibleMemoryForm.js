@@ -18,7 +18,7 @@ class NewBibleMemoryForm extends Component {
 				<label>{label}</label>
 				<div>
 					<input {...input} placeholder={placeholder} type={type} />
-					<div className="red-text" style={{ marginBottom: "20px" }}>
+					<div className="red-text"sds_absolute-centered>
 						{touched && error}
 					</div>
 				</div>
@@ -38,6 +38,7 @@ class NewBibleMemoryForm extends Component {
 
     return (
 			<form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+				<h5 className="formTitle">New Memory Verse</h5>
 				<Field
 					name="verse"
 					type="text"
@@ -46,7 +47,7 @@ class NewBibleMemoryForm extends Component {
 					component={this.renderField}
 					validate={required}
 				/>
-				<div>
+				<div className="form-buttons">
 					<button type="submit" disabled={submitting}>
 						Submit
 					</button>
@@ -55,7 +56,7 @@ class NewBibleMemoryForm extends Component {
 						disabled={pristine || submitting}
 						onClick={reset}
 					>
-						Clear Values
+						Clear
 					</button>
 				</div>
 			</form>

@@ -18,7 +18,7 @@ class NewExerciseForm extends Component {
 				<label>{label}</label>
 				<div>
 					<input {...input} placeholder={placeholder} type={type} />
-					<div className="red-text" style={{ marginBottom: "20px" }}>
+					<div className="red-text"sds_absolute-centered>
 						{touched && error}
 					</div>
 				</div>
@@ -38,6 +38,7 @@ class NewExerciseForm extends Component {
 
     return (
 			<form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+				<h5 className="formTitle">New Exercise</h5>
 				<Field
 					name="distance"
 					type="Number"
@@ -46,7 +47,7 @@ class NewExerciseForm extends Component {
 					component={this.renderField}
 					validate={required}
 				/>
-				<div>
+				<div className="form-buttons">
 					<button type="submit" disabled={submitting}>
 						Submit
 					</button>
@@ -55,7 +56,7 @@ class NewExerciseForm extends Component {
 						disabled={pristine || submitting}
 						onClick={reset}
 					>
-						Clear Values
+						Clear
 					</button>
 				</div>
 			</form>
