@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import moment from "moment";
 import * as actions from '../../actions';
 
-class RecentUserGoals extends Component {
+class RecentAllGoals extends Component {
   sortGoalsByDate() {
     let { goals } = this.props;
     goals = goals.sort(function(a,b){
@@ -19,15 +19,17 @@ class RecentUserGoals extends Component {
   }
 
   typeToAction = goal => {
+    const userName = goal.user_name.includes('(') ? goal.user_name.split('(')[0] : goal.user_name;
+
     switch (goal.type) {
         case "bibleReading":
-          return `You read ${goal.book} ${goal.chapter}`;
+          return `${userName} read ${goal.book} ${goal.chapter}`;
         case "bibleMemory":
-          return `You memorized ${goal.verse}`;
+          return `${userName} memorized ${goal.verse}`;
         case "bookReading":
-          return `You read ${goal.book}`;
+          return `${userName} read ${goal.book}`;
         case "exercise":
-          return `You ran ${goal.distance} miles`;
+          return `${userName} ran ${goal.distance} miles`;
         default:
       }
     };
@@ -36,37 +38,24 @@ class RecentUserGoals extends Component {
   renderPosts() {
     let goals = this.sortGoalsByDate();
 
-    if(goals[0] === undefined){
-      return (<li>Enter your first goal below!</li>)
-    }
-
 		return _.map(goals.slice(0, 5), goal => {
       return (
 				<li className="list-item" key={goal._id}>
           <div>
-            {this.renderDate(goal.date_created)} <br/> {this.typeToAction(goal)}
+            {this.renderDate(goal.date_created)}
           </div>
           <div>
-            <button
-              className="btn btn-danger pull-xs-right"
-              onClick={() => {this.onDeleteClick(`${goal._id}`)}}
-            >
-              Delete
-            </button>
+            {this.typeToAction(goal)}
           </div>
         </li>
 			);
 		});
 	}
 
-  onDeleteClick(id) {
-    this.props.deleteGoal(id);
-  }
-
 	render() {
 		return (
 			<div>
-				<h3>Your Recently Completed Goals</h3>
+				<h3>All Recently Completed Goals</h3>
 				<ul className="list">{this.renderPosts()}</ul>
 			</div>
 		);
@@ -77,4 +66,4 @@ function mapStateToProps(state) {
 	return { goals: state.goals };
 }
 
-export default connect(mapStateToProps, actions)(RecentUserGoals);
+export default connect(mapStateToProps, actions)(RecentAllGoals);

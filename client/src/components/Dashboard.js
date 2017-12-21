@@ -5,7 +5,7 @@ import NewBibleReadingForm from "./goals/NewBibleReadingForm.js";
 import NewBibleMemoryForm from "./goals/NewBibleMemoryForm.js";
 import NewBookReadingForm from "./goals/NewBookReadingForm.js";
 import NewExerciseForm from "./goals/NewExerciseForm.js";
-import RecentGoals from "./goals/recentGoalsIndex.js"
+import RecentUserGoals from "./goals/recentGoalsIndex.js"
 
 class Dashboard extends Component {
 	componentDidMount() {
@@ -29,7 +29,7 @@ class Dashboard extends Component {
 
 				<div className='wc-dashboard--body'>
           <div className="wc-dashboard--recent">
-            <RecentGoals />
+            <RecentUserGoals />
           </div>
           <div className="row">
             <div className="col-xs-12 col-sm-6 col-md-3">
