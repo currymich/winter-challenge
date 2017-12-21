@@ -142,8 +142,8 @@ form select, form .red-text{margin-bottom:1rem;}
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid white;
-  margin: 1em 0.25em;
-  padding: 1em 0;
+  margin: 0em 2.5em;
+  padding: 1.5em 0;
 }
 
 .list-item:last-of-type {
