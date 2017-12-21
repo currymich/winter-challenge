@@ -31,7 +31,7 @@ form select, form .red-text{margin-bottom:1rem;}
 
 /** LANDING PAGE STYLES **/
 .wc-landing--heading{
-	padding: 10% 5%;
+	padding: 5%;
 	background-color: #fff;
 	background-image: url('./main-wallpaper.jpg');
     background-position-x: center;
@@ -150,6 +150,11 @@ form select, form .red-text{margin-bottom:1rem;}
   border: none;
 }
 
+.list-item button.btn {
+    font-size: 0.6rem;
+    padding: 0 10px;
+}
+
 .newGoalForm form button:hover{background-color: #fff;color: #333;}
 
 ul.leaderboard-list{max-width: 600px; margin: 0 auto 5%;}
@@ -166,6 +171,11 @@ ul.leaderboard-list{max-width: 600px; margin: 0 auto 5%;}
 	.wc-dashboard--recent{margin-top:5%; margin-bottom:5%;}
 	.wc-dashboard--recent h3{font-size:1.5rem; letter-spacing: 4px;}
 	.wc-dashboard--recent .list li{font-size:1.3rem;}
+
+	.list-item button.btn {
+	    font-size: 1rem;
+	    padding: 0 2rem;
+	}
 
 	.wc-dashboard--body .col-md-3{display:flex;}
 	.newGoalForm{height: 320px;}
