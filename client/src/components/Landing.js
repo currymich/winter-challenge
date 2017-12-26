@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import RecentAllGoals from "./goals/recentAllGoalsIndex.js";
+import Scoreboard from "./Scoreboard";
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
@@ -22,11 +23,16 @@ class Landing extends Component {
         <div className="wc-dashboard--recent">
           <RecentAllGoals />
         </div>
+        <div>
+          <Scoreboard />
+        </div>
       </div>
     )
   }
 }
 
+function mapStateToProps(state){
+  return { goals: state.goals }
+}
 
-
-export default connect(null, actions)(Landing);
+export default connect(mapStateToProps, actions)(Landing);

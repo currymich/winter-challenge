@@ -5,7 +5,8 @@ import {
 	FETCH_BIBLE_READING,
 	UPDATE_USER_POINTS,
   FETCH_USER_GOALS,
-	FETCH_ALL_GOALS
+	FETCH_ALL_GOALS,
+	FETCH_ALL_USERS
 } from "./types";
 
 export const fetchUser = () => {
@@ -17,6 +18,17 @@ export const fetchUser = () => {
 		dispatch(updateUserPoints(goals));
 	};
 };
+
+export const fetchAllUsers = () => {
+	return dispatch => {
+		axios.get("/api/users").then(users => {
+			dispatch({
+				type: FETCH_ALL_USERS,
+				payload: users
+			})
+		})
+	}
+}
 
 export const fetchUserGoals = () => {
   return dispatch => {
