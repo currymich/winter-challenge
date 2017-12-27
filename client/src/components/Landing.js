@@ -23,7 +23,7 @@ class Landing extends Component {
         <div className="wc-dashboard--recent">
           <RecentAllGoals />
         </div>
-        <div>
+        <div className="charts">
           <Scoreboard />
         </div>
       </div>
