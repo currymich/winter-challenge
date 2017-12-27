@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Field, reduxForm } from "redux-form";
-import * as actions from "../../actions";
+import { Field, reduxForm, formValueSelector } from "redux-form";
 import bookList from "../../static_data/bookList.js";
+import * as actions from "../../actions"
 import _ from "lodash";
 
 class NewBookReadingForm extends Component {
@@ -34,7 +34,7 @@ class NewBookReadingForm extends Component {
 	}
 
 	render() {
-		const { handleSubmit, pristine, reset, submitting } = this.props;
+		const { handleSubmit, pristine, reset, submitting, selectedBook } = this.props;
 		return (
 			<form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
 				<h5 className="formTitle">New Reading</h5>
@@ -45,11 +45,36 @@ class NewBookReadingForm extends Component {
 							name="bookTitle"
 							component="select"
 							style={{ display: "block" }}
+							validate={required}
 						>
-							<option>Please select a book...</option>
+							<option value="">Please select a book...</option>
+							<option value="custom">Enter a custom book:</option>
 							{this.renderBooks()}
 						</Field>
 					</div>
+					{selectedBook === "custom" &&
+	        <div>
+	          <label>Book Title</label>
+	          <div>
+	            <Field
+	              name="customTitle"
+	              component="input"
+	              type="text"
+	              placeholder="Title"
+								validate={required}
+	            />
+	          </div>
+						<label>Book Title</label>
+	          <div>
+	            <Field
+	              name="customPoints"
+	              component="input"
+	              type="number"
+	              placeholder="Points"
+								validate={required}
+	            />
+	          </div>
+	        </div>}
 				</div>
 				<div className="form-buttons">
 					<button type="submit" disabled={pristine || submitting}>
@@ -68,10 +93,16 @@ class NewBookReadingForm extends Component {
 	}
 }
 
+const required = value => (value && value !== "" ? undefined : 'Required')
+
+const selector = formValueSelector('newBookReading');
 function mapStateToProps(state) {
-	return { goals: state.goals };
+	const selectedBook = selector(state, 'bookTitle')
+	return { selectedBook, goals: state.goals };
 }
 
-export default reduxForm({
+NewBookReadingForm = reduxForm({
 	form: "newBookReading"
 })(connect(mapStateToProps, actions)(NewBookReadingForm));
+
+export default NewBookReadingForm;
