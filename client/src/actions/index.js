@@ -1,4 +1,5 @@
 import axios from "axios";
+import * as Materialize from "materialize-css"
 import {
 	FETCH_USER,
 	FETCH_MEMORIZED,
@@ -61,7 +62,7 @@ export const updateUserPoints = points => {
 	};
 };
 
-export const calculateUserPoints = goals => {
+export const calculateUserPoints = (goals, newBibleReading = undefined) => {
 	var bonusPoints = 0;
 	// Separate just the bible reading goals
 	let bibleRead = goals.filter(goal => goal.type === 'bibleReading');
@@ -100,6 +101,9 @@ export const calculateUserPoints = goals => {
 
 		//if every chapter read, increase bonusPoints
 		if (chapters.length === book.chapters){
+			if (book.title === newBibleReading){
+				Materialize.toast(`Great job, you finished ${book.title} and earned a bonus of ${book.chapters} points!`, 8000)
+			}
 			bonusPoints += parseInt(book.chapters, 10);
 		}
 	})
@@ -167,8 +171,11 @@ export function createGoal(values, type) {
 
 			return goals.data;
 		}).then(goals => {
-			const points = calculateUserPoints(goals);
-			return points;
+			if(type === "bibleReading"){
+				return calculateUserPoints(goals, values.book);
+			} else {
+				return calculateUserPoints(goals)
+			}
 		}).then(points => {
 			dispatch(updateUserPoints(points))
 		})
