@@ -16,7 +16,8 @@ export const fetchUser = () => {
 		dispatch({ type: FETCH_USER, payload: user });
 
 		const goals = await axios.get(`/goals/user`);
-		calculateUserPoints(goals.data);
+		const points = await calculateUserPoints(goals.data);
+		dispatch(updateUserPoints(points));
 	};
 };
 
@@ -53,17 +54,14 @@ export const fetchAllGoals = () => {
   };
 }
 
-function updateUserPoints(points) {
-	return dispatch => {
-		dispatch({
-			type: UPDATE_USER_POINTS,
-			payload: points
-		});
-	}
-}
+export const updateUserPoints = points => {
+	return {
+		type: UPDATE_USER_POINTS,
+		payload: points
+	};
+};
 
-function calculateUserPoints(goals){
-	console.log('hit')
+export const calculateUserPoints = goals => {
 	var bonusPoints = 0;
 	// Separate just the bible reading goals
 	let bibleRead = goals.filter(goal => goal.type === 'bibleReading');
@@ -107,12 +105,10 @@ function calculateUserPoints(goals){
 	})
 
 	var points = goals.reduce((sum, goal) => {return sum + parseInt(goal.points, 10)}, 0);
-	console.log(points)
 
 	points += bonusPoints;
 
-	console.log(points)
-	updateUserPoints(points);
+	return points
 };
 
 export const fetchMemorizedVerses = () => {
@@ -164,18 +160,18 @@ export function createGoal(values, type) {
 
 	return dispatch => {
 		axios.post(`${endpointUrl(type)}`, values).then(goals => {
-			// dispatch({
-			// 	type: UPDATE_USER_POINTS,
-			// 	payload: res
-			// });
-
-			calculateUserPoints(goals.data)
-
       dispatch({
         type: FETCH_USER_GOALS,
         payload: goals
       })
-    })
+
+			return goals.data;
+		}).then(goals => {
+			const points = calculateUserPoints(goals);
+			return points;
+		}).then(points => {
+			dispatch(updateUserPoints(points))
+		})
 	};
 }
 
@@ -183,17 +179,16 @@ export function deleteGoal(id) {
   return dispatch => {
     axios.delete(`/goals/${id}`)
     .then(goals => {
-			// dispatch({
-			// 	type: UPDATE_USER_POINTS,
-			// 	payload: res
-			// })
-
-			calculateUserPoints(goals.data)
-
       dispatch({
         type: FETCH_USER_GOALS,
         payload: goals
       })
-    })
+			return goals.data;
+		}).then(goals => {
+			const points = calculateUserPoints(goals);
+			return points;
+		}).then(points => {
+			dispatch(updateUserPoints(points))
+		})
   }
 }

@@ -37,9 +37,7 @@ class Scoreboard extends Component {
 		// filters all goals to get just sis goals
 		let goals = allGoals.filter(goal => users.includes(goal.user_id));
 
-		const points = goals.reduce((sum, goal) => {
-			return sum + parseInt(goal.points, 10);
-		}, 0);
+		const points = actions.calculateUserPoints(goals)
 
 		return points;
 	}
