@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../actions";
-import _ from 'lodash';
+import _ from "lodash";
 
 class Scoreboard extends Component {
 	componentDidMount() {
@@ -69,44 +69,57 @@ class Scoreboard extends Component {
 	}
 
 	renderChart(data) {
-    let points = data.map(d => {return d.points});
-
-    var max = points.reduce((a,b) => {
-      return Math.max(a,b);
-    })
-
-    data.forEach(datum => {
-      datum.points = 100*(datum.points/max);
-    })
-
-    return _.map(data, datum => {
-      return (
-        <div
-          key={datum.label}
-          className="bar"
-          style={{width: datum.points + "%"}}
-          >
-          {datum.label}
-        </div>
-			);
+		let points = data.map(d => {
+			return d.points;
 		});
 
+		var max = points.reduce((a, b) => {
+			return Math.max(a, b);
+		});
+
+		data.forEach(datum => {
+			datum.width = 100 * (datum.points / max);
+		});
+
+		return _.map(data, datum => {
+			return (
+				<div
+					key={datum.label}
+					className="bar"
+					style={{ width: datum.width + "%" }}
+				>
+					{`${datum.label} (${datum.points})`}
+				</div>
+			);
+		});
 	}
 
-	// renderGenderPoints() {
-	// 	let sisters = this.genderUsers("female");
-	// 	let bros = this.genderUsers("male");
-  //
-	// 	const sisPoints = this.calcPoints(sisters);
-	// 	const broPoints = this.calcPoints(bros);
-	// }
+	calcGenderPoints() {
+		let sisters = this.genderUsers("female");
+		let bros = this.genderUsers("male");
+
+		const sisPoints = this.calcPoints(sisters);
+		const broPoints = this.calcPoints(bros);
+
+		return [
+			{ label: "Bros", points: broPoints },
+			{ label: "Sisters", points: sisPoints }
+		];
+	}
 
 	render() {
 		return (
-      <div className="class-chart">
-        {this.renderChart(this.calcClassPoints())}
-      </div>
-    );
+			<div className="charts">
+				<div className="chart">
+					<h5 className="chart-title">Score by class</h5>
+					{this.renderChart(this.calcClassPoints())}
+				</div>
+				<div className="chart">
+					<h5 className="chart-title">Bros vs Sisters</h5>
+					{this.renderChart(this.calcGenderPoints())}
+				</div>
+			</div>
+		);
 	}
 }
 
