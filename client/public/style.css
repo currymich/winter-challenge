@@ -165,6 +165,34 @@ form select, form .red-text{margin-bottom:1rem;}
     padding: 0 10px;
 }
 
+.charts {
+  width: 100%;
+  padding: 0 5%;
+}
+
+.chart-title {
+  color: #fff;
+}
+
+.chart {
+  padding: 10px;
+  max-width: 768px;
+  background-color: #384F65;
+  border: 3px solid white;
+  border-radius: 5px;
+  margin: 1em auto;
+}
+
+.bar {
+  height: 20px;
+  margin: 3px 0;
+  background-color: #FFEAA4;
+  color: #FF5300;
+  padding-left: 5px;
+  white-space: nowrap;
+  border-radius: 2px;
+}
+
 .newGoalForm form button:hover{background-color: #fff;color: #333;}
 
 ul.leaderboard-list{max-width: 600px; margin: 0 auto 5%;}
