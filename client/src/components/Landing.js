@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import RecentAllGoals from "./goals/recentAllGoalsIndex.js";
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import * as actions from '../actions';
 
 class Landing extends Component {
@@ -18,6 +19,7 @@ class Landing extends Component {
         </div>
         <div className='wc-landing--section'>
           <p>Track progress on your winter challenge goals, earn points, win prizes!</p>
+          <Link to='/dashboard'>Go to the dashboard!</Link>
         </div>
         <div className="wc-dashboard--recent">
           <RecentAllGoals />
