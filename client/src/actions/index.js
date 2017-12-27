@@ -8,6 +8,7 @@ import {
 	FETCH_ALL_GOALS,
 	FETCH_ALL_USERS
 } from "./types";
+import bibleBookList from "../static_data/bibleBookList";
 
 export const fetchUser = () => {
 	return async dispatch => {
@@ -15,7 +16,7 @@ export const fetchUser = () => {
 		dispatch({ type: FETCH_USER, payload: user });
 
 		const goals = await axios.get(`/goals/user`);
-		dispatch(updateUserPoints(goals));
+		updateUserPoints(goals.data);
 	};
 };
 
@@ -52,11 +53,61 @@ export const fetchAllGoals = () => {
   };
 }
 
-export const updateUserPoints = goals => {
-	return {
-		type: UPDATE_USER_POINTS,
-		payload: goals
-	};
+function updateUserPoints(goals) {
+	return dispatch => {
+		var bonusPoints = 0;
+		console.log(goals)
+		// Separate just the bible reading goals
+		// let bibleRead = goals.filter(goal => goal.type === 'bibleReading');
+	  //
+		// //for each book of the bible, check for completion, increase bonusPoints if true
+		// bibleBookList.forEach(book => {
+		// 	//separate just the reading from this book
+		// 	let filteredReading = bibleRead.filter(goal => goal.book === book.title)
+	  //
+		// 	//get a list of chapters read for book
+		// 	let chapters = filteredReading.map(goal => goal.chapter);
+	  //
+		// 	chapters.forEach(reading => {
+		// 		if(typeof reading === "string" && reading.includes('-')){
+		// 	    var split = reading.split('-')
+	  //
+		// 			var x = parseInt(split[0]);
+		// 			var z = split[1];
+	  //
+		// 			while (x <= z) {
+		// 				chapters.push(x)
+		// 				x++
+	  //   		}
+		// 		}
+		// 	})
+	  //
+		// 	//eliminate duplicates, out of range, sort
+	  //   	// dupes - stackoverflow.com/questions/11246758
+		// 	chapters = chapters.filter((x, i, a) => a.indexOf(x) == i);
+		// 		//eliminate too high
+		// 	chapters = chapters.filter(x => x <= book.chapters && x > 0)
+		// 		//eliminate too low
+		// 	chapters = chapters.sort((a, b) => {
+	  // 			return a - b;
+		// 	})
+	  //
+		// 	//if every chapter read, increase bonusPoints
+		// 	if (chapters.length === book.chapters){
+		// 		bonusPoints += parseInt(book.chapters);
+		// 	}
+		// })
+
+		var points = goals.reduce((sum, goal) => {return sum + parseInt(goal.points, 10)}, 0);
+		console.log(points)
+
+		points += bonusPoints;
+
+		dispatch({
+			type: UPDATE_USER_POINTS,
+			payload: points
+		});
+	}
 };
 
 export const fetchMemorizedVerses = () => {
@@ -107,17 +158,17 @@ export function createGoal(values, type) {
   }
 
 	return dispatch => {
-		axios.post(`${endpointUrl(type)}`, values).then(res => {
-			dispatch({
-				type: UPDATE_USER_POINTS,
-				payload: res
-			});
+		axios.post(`${endpointUrl(type)}`, values).then(goals => {
+			// dispatch({
+			// 	type: UPDATE_USER_POINTS,
+			// 	payload: res
+			// });
 
-      return res;
-		}).then(res => {
+			updateUserPoints(goals.data)
+
       dispatch({
         type: FETCH_USER_GOALS,
-        payload: res
+        payload: goals
       })
     })
 	};
@@ -126,16 +177,17 @@ export function createGoal(values, type) {
 export function deleteGoal(id) {
   return dispatch => {
     axios.delete(`/goals/${id}`)
-    .then(res => {
-			dispatch({
-				type: UPDATE_USER_POINTS,
-				payload: res
-			})
-      return res;
-		}).then(res => {
+    .then(goals => {
+			// dispatch({
+			// 	type: UPDATE_USER_POINTS,
+			// 	payload: res
+			// })
+
+			updateUserPoints(goals.data)
+
       dispatch({
         type: FETCH_USER_GOALS,
-        payload: res
+        payload: goals
       })
     })
   }
