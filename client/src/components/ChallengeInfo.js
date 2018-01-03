@@ -184,7 +184,7 @@ class InfoPage extends Component {
 				</div>
 				<div id="memory" className="info-tab col s12">
 					<h5>You can also earn points by memorizing verses and context about each</h5>
-          <h5>The list of verses to choose from is below. Context coming soon!</h5>
+          <h5>The list of verses to choose from is below. Check <a href="https://static1.squarespace.com/static/527175c2e4b0b910b690a015/t/5a3b294f71c10b359f54d2bb/1513826640323/2017_Winter-Challenge-Verses.pdf">here</a> for the context you need to memorize along with each verse.</h5>
 
           <div className="verses">
             <div className="verse">
