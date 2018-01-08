@@ -77,9 +77,9 @@ class NewBookReadingForm extends Component {
 	        </div>}
 				</div>
 				<div className="form-buttons">
-					<button type="submit" disabled={pristine || submitting}>
+					{/* <button type="submit" disabled={pristine || submitting}>
 						Submit
-					</button>
+					</button> */}
 					<button
 						type="button"
 						disabled={pristine || submitting}

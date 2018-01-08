@@ -74,9 +74,9 @@ class NewBibleMemoryForm extends Component {
 					</Field>
 				</div>
 				<div className="form-buttons">
-					<button type="submit" disabled={submitting}>
+					{/* <button type="submit" disabled={submitting}>
 						Submit
-					</button>
+					</button> */}
 					<button
 						type="button"
 						disabled={pristine || submitting}
