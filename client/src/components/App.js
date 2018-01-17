@@ -7,6 +7,7 @@ import * as actions from '../actions';
 import Header from './Header';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
+import UserPointList from './UserPointList';
 
 class App extends Component {
   componentDidMount(){
@@ -21,6 +22,7 @@ class App extends Component {
             <Header />
             <Switch>
               <Route path="/dashboard" component={Dashboard} />
+              <Route path="/pointlist" component={UserPointList} />
               <Route path="/" component={Landing} />
             </Switch>
           </div>
