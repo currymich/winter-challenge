@@ -22,7 +22,7 @@ class App extends Component {
             <Header />
             <Switch>
               <Route path="/dashboard" component={Dashboard} />
-              <Route path="/pointlist" component={UserPointList} />
+              {/* <Route path="/pointlist" component={UserPointList} /> */}
               <Route path="/" component={Landing} />
             </Switch>
           </div>
