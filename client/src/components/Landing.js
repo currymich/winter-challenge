@@ -15,14 +15,14 @@ class Landing extends Component {
       <div className='wc-landing--wrapper'>
         <div className='wc-landing--heading'>
           <h1>
-            Element<br/>Winter<br/>Challenge
+            Senior<br/>Summer<br/>Challenge
           </h1>
         </div>
-        <div className='wc-landing--section'>
+        {/* <div className='wc-landing--section'>
           <div>
             <InfoPage />
           </div>
-        </div>
+        </div> */}
         <div className="wc-dashboard--recent">
           <RecentAllGoals />
         </div>

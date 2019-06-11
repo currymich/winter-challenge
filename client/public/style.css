@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway');
-@import url('https://fonts.googleapis.com/css?family=Amatic+SC');
+@import url('https://fonts.googleapis.com/css?family=Kalam');
 /** RESPONSIVE GRID STYLES START **/
 
 
 
 /** RESPONSIVE GRID STYLES END **/
 html{height:100%;}
-html body{background-color:#708090;}
+html body{background-color:#90C1EA;}
 
 div h1, div h2, div h3, div h4, div h5, div h6{margin:0;}
 div ul{margin:0;}
@@ -22,8 +22,8 @@ form select, form .red-text{margin-bottom:1rem;}
 
 .wc-main{font-family: "Raleway",sans-serif; width: 100%; margin:0; padding:0;}
 
-.wc-main div.nav-wrapper{background-color: #607d8b;}
-.wc-main .nav-wrapper a.left.brand-logo{font-family: 'Amatic SC', cursive; text-transform:uppercase;}
+.wc-main div.nav-wrapper{background-color: #438DCF;}
+.wc-main .nav-wrapper a.left.brand-logo{font-family: 'Kalam', cursive; text-transform:uppercase; font-size: 2.5rem;}
 
 .login.btn{background-color: #d6635b;}
 .login.btn:hover, .login.btn:focus{background-color: #b5544d;}
@@ -35,11 +35,11 @@ form select, form .red-text{margin-bottom:1rem;}
 	background-color: #fff;
 	background-image: url('./main-wallpaper.jpg');
     background-position-x: center;
-    background-position-y: 90%;
+    background-position-y: 60%;
 	background-size: cover;
 }
 
-.wc-landing--heading h1{font-size: 3.2rem; text-transform: uppercase; margin:0;}
+.wc-landing--heading h1{font-size: 3.2rem; text-transform: uppercase; margin:0; color: #fff;}
 
 .wc-landing--section{color:#fff;}
 .wc-landing--section > p{font-size: 1.8rem; margin: 5%;}

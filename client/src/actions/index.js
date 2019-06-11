@@ -149,7 +149,7 @@ export function createGoal(values, type) {
 	//processing logic for bible reading type goals to allow multi-chp
 	if (type === "bibleReading" && values.chapter.includes("-")) {
 		var chapters = values.chapter.split("-");
-		values.points = (chapters[1] - chapters[0] + 1) * 2;
+		values.points = (chapters[1] - chapters[0] + 1) * 1;
 	}
 
 	//logic for book reading goals - split coded value from title

@@ -32,7 +32,7 @@ class Header extends Component {
             className="left brand-logo"
             to={this.props.auth ? '/dashboard' : '/'}
           >
-            WINTER CHALLENGE
+            SUMMER CHALLENGE
           </Link>
           <ul className="right">
             {this.renderLogin()}
