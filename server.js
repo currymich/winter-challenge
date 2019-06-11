@@ -12,7 +12,7 @@ const logger = require('morgan');
 const keys = require("./config/keys");
 
 // DB config
-const mongoURI = process.env.MONGODB_URI || "mongodb://localhost/winter_challenge";
+const mongoURI = process.env.MONGODB_URI || "mongodb://localhost/summer_challenge";
 
 mongoose.connect(mongoURI, {useMongoClient: true});
 mongoose.Promise = global.Promise;
