@@ -75,9 +75,9 @@ class NewBibleReadingForm extends Component {
 					validate={required}
 				/>
 				<div className="form-buttons">
-					{/* <button type="submit" disabled={submitting}>
+					<button type="submit" disabled={submitting}>
 						Submit
-					</button> */}
+					</button>
 					<button
 						type="button"
 						disabled={pristine || submitting}
