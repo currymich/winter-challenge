@@ -29,7 +29,7 @@ class RecentAllGoals extends Component {
         case "bookReading":
           return `${userName} read ${goal.book}`;
         case "exercise":
-          return `${userName} ran ${goal.distance} miles`;
+          return `${userName} ${goal.description}`;
         default:
       }
     };

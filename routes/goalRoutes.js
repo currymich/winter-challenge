@@ -121,7 +121,7 @@ module.exports = app => {
 
 
 //generic get all goals route (caution - big)
-  app.get("/goals", async (req, res) => {
+  app.get("/api/goals", async (req, res) => {
     const allGoals = await Goal.find();
 
     res.send(allGoals);
