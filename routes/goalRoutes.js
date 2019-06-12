@@ -59,14 +59,13 @@ module.exports = app => {
 
 //exercise routes
   app.post("/goals/exercise", async (req, res) => {
-    const { distance, points } = req.body;
+    const { description} = req.body;
     const { googleId, name } = req.user;
     const newExercise = await Goal.create({
       user_id: googleId,
       user_name: name,
       type: 'exercise',
-      distance,
-      points
+      description
     });
 
     const userGoals = await Goal.find({user_id: req.user.googleId});

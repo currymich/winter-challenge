@@ -64,49 +64,49 @@ export const updateUserPoints = points => {
 
 export const calculateUserPoints = (goals, newBibleReading = undefined) => {
 	var bonusPoints = 0;
-	// Separate just the bible reading goals
-	let bibleRead = goals.filter(goal => goal.type === "bibleReading");
-
-	//for each book of the bible, check for completion, increase bonusPoints if true
-	bibleBookList.forEach(book => {
-		//separate just the reading from this book
-		let filteredReading = bibleRead.filter(goal => goal.book === book.title);
-
-		//get a list of chapters read for book
-		let chapters = filteredReading.map(goal => goal.chapter);
-
-		chapters.forEach(reading => {
-			if (typeof reading === "string" && reading.includes("-")) {
-				var split = reading.split("-");
-
-				var x = parseInt(split[0], 10);
-				var z = split[1];
-
-				while (x <= z) {
-					chapters.push(x);
-					x++;
-				}
-			}
-		});
-
-		//eliminate duplicates, out of range, sort
-		// dupes - stackoverflow.com/questions/11246758
-		chapters = chapters.filter((x, i, a) => a.indexOf(x) === i);
-		//eliminate too high
-		chapters = chapters.filter(x => x <= book.chapters && x > 0);
-		//eliminate too low
-		chapters = chapters.sort((a, b) => {
-			return a - b;
-		});
-
-		//if every chapter read, increase bonusPoints
-		if (chapters.length === book.chapters){
-			if (book.title === newBibleReading){
-				Materialize.toast(`Great job, you finished ${book.title} and earned a bonus of ${book.chapters} points!`, 8000)
-			}
-			bonusPoints += parseInt(book.chapters, 10);
-		}
-	});
+	// // Separate just the bible reading goals
+	// let bibleRead = goals.filter(goal => goal.type === "bibleReading");
+	//
+	// //for each book of the bible, check for completion, increase bonusPoints if true
+	// bibleBookList.forEach(book => {
+	// 	//separate just the reading from this book
+	// 	let filteredReading = bibleRead.filter(goal => goal.book === book.title);
+	//
+	// 	//get a list of chapters read for book
+	// 	let chapters = filteredReading.map(goal => goal.chapter);
+	//
+	// 	chapters.forEach(reading => {
+	// 		if (typeof reading === "string" && reading.includes("-")) {
+	// 			var split = reading.split("-");
+	//
+	// 			var x = parseInt(split[0], 10);
+	// 			var z = split[1];
+	//
+	// 			while (x <= z) {
+	// 				chapters.push(x);
+	// 				x++;
+	// 			}
+	// 		}
+	// 	});
+	//
+	// 	//eliminate duplicates, out of range, sort
+	// 	// dupes - stackoverflow.com/questions/11246758
+	// 	chapters = chapters.filter((x, i, a) => a.indexOf(x) === i);
+	// 	//eliminate too high
+	// 	chapters = chapters.filter(x => x <= book.chapters && x > 0);
+	// 	//eliminate too low
+	// 	chapters = chapters.sort((a, b) => {
+	// 		return a - b;
+	// 	});
+	//
+	// 	//if every chapter read, increase bonusPoints
+	// 	if (chapters.length === book.chapters){
+	// 		if (book.title === newBibleReading){
+	// 			Materialize.toast(`Great job, you finished ${book.title} and earned a bonus of ${book.chapters} points!`, 8000)
+	// 		}
+	// 		bonusPoints += parseInt(book.chapters, 10);
+	// 	}
+	// });
 
 	var points = goals.reduce((sum, goal) => {
 		return sum + parseInt(goal.points, 10);

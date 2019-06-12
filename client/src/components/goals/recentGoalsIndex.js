@@ -27,7 +27,7 @@ class RecentUserGoals extends Component {
         case "bookReading":
           return `You read ${goal.book}`;
         case "exercise":
-          return `You ran ${goal.distance} miles`;
+          return `You ${goal.description}`;
         default:
       }
     };
