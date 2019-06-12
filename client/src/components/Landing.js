@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import RecentAllGoals from "./goals/recentAllGoalsIndex.js";
 import Scoreboard from "./Scoreboard";
-import InfoPage from "./ChallengeInfo";
+// import InfoPage from "./ChallengeInfo";
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 

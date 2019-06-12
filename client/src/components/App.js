@@ -7,7 +7,7 @@ import * as actions from '../actions';
 import Header from './Header';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
-import UserPointList from './UserPointList';
+// import UserPointList from './UserPointList';
 
 class App extends Component {
   componentDidMount(){

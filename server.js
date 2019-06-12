@@ -14,7 +14,7 @@ const keys = require("./config/keys");
 // DB config
 const mongoURI = process.env.MONGODB_URI || "mongodb://localhost/summer_challenge";
 
-mongoose.connect(mongoURI, {useMongoClient: true});
+mongoose.connect(mongoURI, {useNewUrlParser: true});
 mongoose.Promise = global.Promise;
 
 // Models

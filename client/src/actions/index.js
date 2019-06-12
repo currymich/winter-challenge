@@ -1,5 +1,4 @@
 import axios from "axios";
-import * as Materialize from "materialize-css";
 import {
   FETCH_USER,
   FETCH_MEMORIZED,
@@ -9,7 +8,6 @@ import {
   FETCH_ALL_GOALS,
   FETCH_ALL_USERS
 } from "./types";
-import bibleBookList from "../static_data/bibleBookList";
 
 export const fetchUser = () => {
   return async dispatch => {
