@@ -8,7 +8,6 @@ import * as actions from '../actions';
 class Landing extends Component {
   componentDidMount() {
 		this.props.fetchAllGoals();
-        console.log('goals', this.props.goals);
 	}
 
   render() {

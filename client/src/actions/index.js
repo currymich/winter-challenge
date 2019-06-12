@@ -36,7 +36,6 @@ export const fetchAllUsers = () => {
 export const fetchUserGoals = () => {
   return dispatch => {
     axios.get("/goals/user").then(goals => {
-      console.log("hit user", goals);
       dispatch({
         type: FETCH_USER_GOALS,
         payload: goals
@@ -48,7 +47,6 @@ export const fetchUserGoals = () => {
 export const fetchAllGoals = () => {
   return dispatch => {
     axios.get("/api/goals").then(goals => {
-      console.log("hit all", goals);
       dispatch({
         type: FETCH_ALL_GOALS,
         payload: goals
