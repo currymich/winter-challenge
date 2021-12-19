@@ -66,6 +66,7 @@ const RecentUserGoals = () => {
   };
 
   const typeToAction = (goal) => {
+    console.log(goal.du)
     switch (goal.type) {
       case "readBook":
         return `You read ${goal.data.pages} pages of ${goal.data.title}`;
@@ -82,7 +83,7 @@ const RecentUserGoals = () => {
       case "chores":
         return `You did ${
           goal.data.exercise || goal.data.chore
-        } for ${duration} minutes`;
+        } for ${parseInt(goal.data.duration)} minutes`;
       default:
         return goalTypes[goal.type] ? `You ${goalTypes[goal.type].label}` : "";
     }
