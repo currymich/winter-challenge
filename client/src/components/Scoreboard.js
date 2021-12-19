@@ -1,52 +1,50 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import * as actions from "../actions";
 import _ from "lodash";
 
-class Scoreboard extends Component {
-  componentDidMount() {
-    this.props.fetchAllGoals();
-    this.props.fetchAllUsers();
-  }
+const Scoreboard = () => {
+  // componentDidMount() {
+  //   this.props.fetchAllGoals();
+  //   this.props.fetchAllUsers();
+  // }
 
-  genderUsers(gender) {
+  const genderUsers = (gender) => {
     let allUsers = this.props.users;
 
     //returns array with googleId's of each
     let users = allUsers
-      .filter(user => user.gender === gender)
-      .map(user => {
+      .filter((user) => user.gender === gender)
+      .map((user) => {
         return user.googleId;
       });
 
     return users;
-  }
+  };
 
-  classUsers(grade) {
+  const classUsers = (grade) => {
     let allUsers = this.props.users;
 
     //returns array with googleId's of each
     let users = allUsers
-      .filter(user => user.class === grade)
-      .map(user => {
+      .filter((user) => user.class === grade)
+      .map((user) => {
         return user.googleId;
       });
 
     return users;
-  }
+  };
 
-  calcPoints(users) {
+  const calcPoints = (users) => {
     let allGoals = this.props.goals;
 
     // filters all goals to get just sis goals
-    let goals = allGoals.filter(goal => users.includes(goal.user_id));
+    let goals = allGoals.filter((goal) => users.includes(goal.user_id));
 
     const points = actions.calculateUserPoints(goals);
 
     return points;
-  }
+  };
 
-  calcClassPoints() {
+  const calcClassPoints = () => {
     let freshmen = this.classUsers("freshmen");
     let sophomores = this.classUsers("sophomore");
     let juniors = this.classUsers("junior");
@@ -64,14 +62,14 @@ class Scoreboard extends Component {
       { label: "Sophomores", points: sophPoints },
       { label: "Juniors", points: juniorPoints },
       { label: "Seniors", points: seniorPoints },
-      { label: "Staff", points: staffPoints }
+      { label: "Staff", points: staffPoints },
     ];
 
     return data;
-  }
+  };
 
-  renderChart(data) {
-    let points = data.map(d => {
+  const renderChart = (data) => {
+    let points = data.map((d) => {
       return d.points;
     });
 
@@ -79,11 +77,11 @@ class Scoreboard extends Component {
       return Math.max(a, b);
     });
 
-    data.forEach(datum => {
+    data.forEach((datum) => {
       datum.width = 100 * (datum.points / max);
     });
 
-    return _.map(data, datum => {
+    return _.map(data, (datum) => {
       return (
         <div
           key={datum.label}
@@ -94,9 +92,9 @@ class Scoreboard extends Component {
         </div>
       );
     });
-  }
+  };
 
-  calcGenderPoints() {
+  const calcGenderPoints = () => {
     let sisters = this.genderUsers("female");
     let bros = this.genderUsers("male");
 
@@ -105,34 +103,33 @@ class Scoreboard extends Component {
 
     return [
       { label: "Bros", points: broPoints },
-      { label: "Sisters", points: sisPoints }
+      { label: "Sisters", points: sisPoints },
     ];
-  }
+  };
 
-  sumPoints(goals) {
+  const sumPoints = (goals) => {
     return goals.reduce((sum, goal) => {
       return sum + parseInt(goal.points, 10);
     }, 0);
-  }
+  };
 
-  calcCategoryPoints() {
+  const calcCategoryPoints = () => {
     const allGoals = [...this.props.goals];
-    const exerciseGoals = allGoals.filter(goal => goal.type === "exercise");
-    const bibleGoals = allGoals.filter(goal => goal.type === "bibleReading");
+    const exerciseGoals = allGoals.filter((goal) => goal.type === "exercise");
+    const bibleGoals = allGoals.filter((goal) => goal.type === "bibleReading");
 
     const exercisePoints = this.sumPoints(exerciseGoals);
     const biblePoints = this.sumPoints(bibleGoals);
 
     return [
       { label: "Bible Reading", points: biblePoints },
-      { label: "Exercise", points: exercisePoints }
+      { label: "Exercise", points: exercisePoints },
     ];
-  }
+  };
 
-  render() {
-    return (
-      <div className="charts">
-        {/* <div className="chart">
+  return (
+    <div className="charts">
+      {/* <div className="chart">
 					<h5 className="chart-title">Score by class</h5>
 					{this.renderChart(this.calcClassPoints())}
 				</div>
@@ -140,20 +137,16 @@ class Scoreboard extends Component {
 					<h5 className="chart-title">Bros vs Sisters</h5>
 					{this.renderChart(this.calcGenderPoints())}
 				</div> */}
-        <div className="chart">
-          <h5 className="chart-title">Points by Category</h5>
-          {this.renderChart(this.calcCategoryPoints())}
-        </div>
+      <div className="chart">
+        <h5 className="chart-title">Points by Category</h5>
+        {/* {this.renderChart(this.calcCategoryPoints())} */}
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
-function mapStateToProps(state) {
-  return { users: state.users, goals: state.goals };
-}
+// function mapStateToProps(state) {
+//   return { users: state.users, goals: state.goals };
+// }
 
-export default connect(
-  mapStateToProps,
-  actions
-)(Scoreboard);
+export default Scoreboard;

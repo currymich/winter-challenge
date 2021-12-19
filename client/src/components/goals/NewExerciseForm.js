@@ -1,71 +1,63 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Field, reduxForm } from "redux-form";
-import * as actions from "../../actions";
+import React from "react";
 
-class NewExerciseForm extends Component {
-	renderField(field) {
-		const {
-			input,
-			label,
-			type,
-			placeholder,
-			meta: { touched, error }
-		} = field;
+const NewExerciseForm = () => {
+  // renderField(field) {
+  // 	const {
+  // 		input,
+  // 		label,
+  // 		type,
+  // 		placeholder,
+  // 		meta: { touched, error }
+  // 	} = field;
 
-		return (
-			<div>
-				<label>{label}</label>
-				<div>
-					<input {...input} placeholder={placeholder} type={type} />
-					<div className="red-text">
-						{touched && error}
-					</div>
-				</div>
-			</div>
-		);
-	}
+  // 	return (
+  // 		<div>
+  // 			<label>{label}</label>
+  // 			<div>
+  // 				<input {...input} placeholder={placeholder} type={type} />
+  // 				<div className="red-text">
+  // 					{touched && error}
+  // 				</div>
+  // 			</div>
+  // 		</div>
+  // 	);
+  // }
 
-  onSubmit(values) {
-    const {createGoal, reset} = this.props;
+  // onSubmit(values) {
+  //   const {createGoal, reset} = this.props;
 
-    createGoal(values, 'exercise');
-    reset();
-  }
+  //   createGoal(values, 'exercise');
+  //   reset();
+  // }
 
-	render() {
-		const { handleSubmit, pristine, reset, submitting } = this.props;
+  // const { handleSubmit, pristine, reset, submitting } = this.props;
 
-    return (
-			<form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-				<h5 className="formTitle">New Exercise</h5>
-				<Field
-					name="distance"
-					type="Number"
-          label="Distance Ran (Miles)"
-          placeholder="5"
-					component={this.renderField}
-					validate={positive}
-				/>
-				<div className="form-buttons">
-					{/* <button type="submit" disabled={submitting}>
-						Submit
-					</button> */}
-					<button
-						type="button"
-						disabled={pristine || submitting}
-						onClick={reset}
-					>
-						Clear
-					</button>
-				</div>
-			</form>
-		);
-	}
-}
+  return <div>exercise</div>;
+  // <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+  // 	<h5 className="formTitle">New Exercise</h5>
+  // 	<Field
+  // 		name="distance"
+  // 		type="Number"
+  //     label="Distance Ran (Miles)"
+  //     placeholder="5"
+  // 		component={this.renderField}
+  // 		validate={positive}
+  // 	/>
+  // 	<div className="form-buttons">
+  // 		{/* <button type="submit" disabled={submitting}>
+  // 			Submit
+  // 		</button> */}
+  // 		<button
+  // 			type="button"
+  // 			disabled={pristine || submitting}
+  // 			onClick={reset}
+  // 		>
+  // 			Clear
+  // 		</button>
+  // 	</div>
+  // </form>
+};
 
-const positive = value => (value > 0 ? undefined : 'Enter a positive number')
+// const positive = value => (value > 0 ? undefined : 'Enter a positive number')
 
-export default reduxForm({
-	form: "newExercise"
-})(connect(null, actions)(NewExerciseForm));
+export default NewExerciseForm;

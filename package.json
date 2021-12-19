@@ -11,21 +11,23 @@
 		"start": "node server.js",
 		"server": "nodemon server.js",
 		"client": "npm run start --prefix client",
-		"dev": "concurrently \"npm run server\" \"npm run client\"",
+		"dev": "concurrently \"npm run server\" \"npm run client\" \"npm run mongo\"",
+		"mongo": "~/Applications/mongo/mongod --dbpath ~/dev/projects/winter-challenge/data",
 		"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
 	},
 	"author": "currymich",
 	"license": "ISC",
 	"dependencies": {
-		"body-parser": "^1.18.2",
-		"cookie-session": "^1.3.3",
+		"connect-mongo": "^4.6.0",
+		"crypto": "^1.0.1",
+		"eslint": "^8.4.1",
 		"express": "^4.17.1",
+		"express-session": "^1.17.2",
 		"moment": "^2.20.1",
-		"mongoose": "^5.5.14",
+		"mongoose": "^5.13.13",
 		"morgan": "^1.9.1",
 		"passport": "^0.3.2",
-		"passport-google-oauth20": "^1.0.0",
-		"redux-form": "^7.2.0",
+		"passport-local": "^1.0.0",
 		"save": "^2.3.2"
 	}
 }

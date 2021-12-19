@@ -4,8 +4,10 @@ const goalSchema = require("./Goal")
 
 
 const userSchema = new Schema({
-	googleId: String,
+	email: String,
   name: String,
+	password: String,
+	salt: String,
 	points: { type: Number, default: 0 },
 	goals: [{ type: Schema.Types.ObjectId, ref: 'Goal'}],
 	gender: { type: String, default: "" },

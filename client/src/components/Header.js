@@ -1,50 +1,51 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { useAuthState } from "../providers/Auth";
+import styled from "styled-components";
+import { Button } from "antd";
 
-class Header extends Component {
+const Nav = styled.nav`
+  padding: 10px;
+  background-color: #438DCFF;
+  display: flex;
+  justify-content: space-between;
+`;
 
-  renderLogin() {
-    const { auth } = this.props;
-    switch (auth) {
-      case null:
-        return;
-      case false:
-        return <li><a className="login waves-effect waves-light btn" href="/auth/google">Login</a></li>;
-      default:  //user IS logged in
-        return (
-          <ul>
-            <li>
-              <a className="logout waves-effect waves-light btn" href="/api/logout">
-                Logout
-              </a>
-            </li>
-          </ul>
-        )
-    }
+const Logo = styled(Link)`
+  font-family: "Kalam", cursive;
+  text-transform: uppercase;
+  font-size: 2.5rem;
+`;
+
+const AuthButton = styled(Link)`
+  background-color: #d6635b;
+  padding: 0 15px;
+  color: white;
+  &:hover {
+    background-color: #b5544d;
   }
+  border: none;
+  display: flex;
+  align-items: center;
+  border-radius: 2px;
+`;
 
-  render() {
-    return (
-      <nav>
-        <div className="nav-wrapper">
-          <Link
-            className="left brand-logo"
-            to={this.props.auth ? '/dashboard' : '/'}
-          >
-            SUMMER CHALLENGE
-          </Link>
-          <ul className="right">
-            {this.renderLogin()}
-          </ul>
-        </div>
-      </nav>
-    );
-  }
-}
+const Header = ({ history }) => {
+  const { authenticated, user, dispatch } = useAuthState();
 
-function mapStateToProps(state){
-  return { auth: state.auth, points: state.points };
+  return (
+    <Nav>
+      <Logo to={authenticated ? "/dashboard" : "/"}>WINTER CHALLENGE</Logo>
+
+      {!authenticated ? (
+        <AuthButton to={"/login"}>Login</AuthButton>
+      ) : (
+        <AuthButton onClick={() => dispatch({ type: "LOGOUT" })} to={"/"}>
+          Logout
+        </AuthButton>
+      )}
+    </Nav>
+  );
 };
 
-export default connect(mapStateToProps)(Header);
+export default Header;
