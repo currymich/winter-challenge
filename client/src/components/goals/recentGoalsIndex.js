@@ -66,7 +66,6 @@ const RecentUserGoals = () => {
   };
 
   const typeToAction = (goal) => {
-    console.log(goal.du)
     switch (goal.type) {
       case "readBook":
         return `You read ${goal.data.pages} pages of ${goal.data.title}`;

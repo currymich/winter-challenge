@@ -33,7 +33,6 @@ const NewGoalForm = () => {
   const [form] = Form.useForm();
 
   const onGoalChange = (value) => {
-    console.log("hit", value);
     setSelectedGoalType(value);
   };
 
