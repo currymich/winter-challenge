@@ -13,6 +13,11 @@ const GoalImg = styled.div`
   background-color: #fff;
 `;
 
-const GoalInfo = () => <GoalImg />;
+const GoalInfo = () => (
+  <>
+    <GoalImg />
+    <div style={{ height: "50px" }} />
+  </>
+);
 
 export default GoalInfo;

@@ -63,7 +63,7 @@ const goalTypes = {
     pointCalculation: ({weeks}) => Math.floor(parseInt(weeks) * 10),
   },
   exercise: {
-    label: "Exercise",
+    label: "Exercised",
     value: "exercise",
     fields: [
       {
@@ -90,10 +90,10 @@ const goalTypes = {
         placeholder: "John 13:1-20",
       },
     ],
-    pointCalculation: ({chapters}) => Math.floor(parseInt(chapters) / 3),
+    pointCalculation: ({}) => 3,
   },
   makeBed: {
-    label: "Read the bible",
+    label: "Made bed for a week",
     value: "makeBed",
     fields: [
       { name: "when", label: "When did you do it", placeholder: '12/20 - 12/27' },
