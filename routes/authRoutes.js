@@ -26,6 +26,7 @@ module.exports = (app) => {
       {
         name: req.body.name,
         email: req.body.email,
+        team: req.body.team,
         password: hash,
         salt: salt,
       },

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, Select } from "antd";
 import { useAuthState } from "../providers/Auth";
+
+const { Option } = Select;
 
 const SignupFormContainer = styled(Form)`
   width: auto;
@@ -27,12 +29,24 @@ const ButtonContainer = styled.div`
   gap: 10px;
 `;
 
+const teams = ["Uppers Bros", "Lowers/Staff Bros", "Sisters"];
+
 const SignupPage = ({ history }) => {
   const [errors, setErrors] = useState({});
+  const [selectedTeam, setSelectedTeam] = useState(teams[0]);
   const { authenticated, dispatch } = useAuthState();
 
+  const onTeamChange = (value) => {
+    setSelectedTeam(value);
+  };
+
   const onSubmit = (values) => {
-    axios.post("/api/signup", values).then((res) => {
+    const newUser = {
+      ...values,
+      team: values.team || selectedTeam,
+    };
+
+    axios.post("/api/signup", newUser).then((res) => {
       if (res.data && res.data.message === "Email not found") {
         setErrors({ email: "Email not found" });
       } else if (res.data && res.data.message === "Incorrect password") {
@@ -89,11 +103,25 @@ const SignupPage = ({ history }) => {
       >
         <Input.Password />
       </Form.Item>
+      <Form.Item
+        name="team"
+        label="Team"
+        help="Existing members have been manually added :)"
+      >
+        <Select defaultValue={selectedTeam} onChange={onTeamChange}>
+          {["Uppers Bros", "Lowers/Staff Bros", "Sisters"].map((team) => (
+            <Option value={team} key={team}>
+              {team}
+            </Option>
+          ))}
+        </Select>
+      </Form.Item>
+
       <Form.Item wrapperCol={{ span: 21 }}>
         <ButtonContainer>
-          <a href="/login">Login to existing account</a>
+          <a href="/login">Have an existing account?</a>
           <Button type="primary" htmlType="submit">
-            Login
+            Signup
           </Button>
         </ButtonContainer>
       </Form.Item>
