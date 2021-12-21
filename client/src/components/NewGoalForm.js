@@ -37,12 +37,18 @@ const NewGoalForm = () => {
   };
 
   const onSubmit = async (values) => {
+    let points = goalTypes[selectedGoalType].pointCalculation(values);
+
+    if (values.multiplyer) {
+      points = points * (parseInt(values.multiplyer) + 1);
+    }
+
     createGoal({
       ...values,
       user_id: user._id,
       name: user.name,
       type: values.type || selectedGoalType,
-      points: goalTypes[selectedGoalType].pointCalculation(values),
+      points,
     });
     form.resetFields();
   };
@@ -72,6 +78,19 @@ const NewGoalForm = () => {
           <Input placeholder={field.placeholder || ""} />
         </Form.Item>
       ))}
+      <Form.Item
+        name="multiplyer"
+        label="Number of other participants"
+        help="Point value is multiplied by the num of people you did the activity with"
+      >
+        <Select placeholder="3">
+          {[0, 1, 2, 3, 4, "5+"].map((num) => (
+            <Option value={num} key={num}>
+              {num}
+            </Option>
+          ))}
+        </Select>
+      </Form.Item>
 
       <div className="form-buttons">
         <Button type="primary" htmlType="submit">

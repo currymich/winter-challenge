@@ -80,7 +80,7 @@ const RecentUserGoals = () => {
         return `You shared with ${goal.data.audience}`;
       case "exercise":
       case "chores":
-        return `You did ${
+        return `You ${
           goal.data.exercise || goal.data.chore
         } for ${parseInt(goal.data.duration)} minutes`;
       default:
