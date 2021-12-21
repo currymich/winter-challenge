@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import { Form, Input, Button, Select } from "antd";
@@ -119,7 +120,7 @@ const SignupPage = ({ history }) => {
 
       <Form.Item wrapperCol={{ span: 21 }}>
         <ButtonContainer>
-          <a href="/login">Have an existing account?</a>
+          <Link to="/login">Have an existing account?</Link>
           <Button type="primary" htmlType="submit">
             Signup
           </Button>
