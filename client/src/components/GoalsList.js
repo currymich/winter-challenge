@@ -1,15 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import _ from "lodash";
-import { useGoalsState } from "../../providers/Goals";
-import goalTypes from "../../constants/goalTypes";
+import goalTypes from "../constants/goalTypes";
 import moment from "moment";
 
 const ListContainer = styled.div`
   text-align: left;
   margin-top: 8%;
   margin-bottom: 8%;
-  padding: 0 5%;
 
   max-width: 768px;
   margin: 50px auto;
@@ -51,44 +49,38 @@ const ListItem = styled.div`
   }
 `;
 
-const RecentUserGoals = () => {
-  const { userGoals, deleteGoal } = useGoalsState();
-  const sortGoalsByDate = () => {
-    const goals = [...userGoals].sort(
+const GoalsList = ({ goals, title, self, deleteGoal }) => {
+  const sortGoalsByDate = () =>
+    [...goals].sort(
       (a, b) => new Date(b.date_created) - new Date(a.date_created)
     );
 
-    return goals;
-  };
-
-  const renderDate = (date) => {
-    return moment(date).format("ddd MMM DD [-] h:mm A");
-  };
+  const renderDate = (date) => moment(date).format("ddd MMM DD [-] h:mm A");
 
   const typeToAction = (goal) => {
     switch (goal.type) {
       case "readBook":
-        return `You read ${goal.data.pages} pages of ${goal.data.title}`;
+        return `${self ? 'You' : goal.user_name} read ${goal.data.pages} pages of ${goal.data.title}`;
       case "readBible":
-        return `You read ${goal.data.reference}`;
+        return `${self ? 'You' : goal.user_name} read ${goal.data.reference}`;
       case "memorizeVerse":
       case "memorizeChapter":
-        return `You memorized ${goal.data.reference}`;
+        return `${self ? 'You' : goal.user_name} memorized ${goal.data.reference}`;
       case "specialTalk":
-        return `You created a talk on ${goal.data.subject}`;
+        return `${self ? 'You' : goal.user_name} created a talk on ${goal.data.subject}`;
       case "shareGospel":
-        return `You shared with ${goal.data.audience}`;
+        return `${self ? 'You' : goal.user_name} shared with ${goal.data.audience}`;
       case "exercise":
       case "chores":
-        return `You ${
-          goal.data.exercise || goal.data.chore
-        } for ${parseInt(goal.data.duration)} minutes`;
+        return `${self ? 'You' : goal.user_name} ${goal.data.exercise || goal.data.chore} for ${parseInt(
+          goal.data.duration
+        )} minutes`;
       default:
-        return goalTypes[goal.type] ? `You ${goalTypes[goal.type].label}` : "";
+        return goalTypes[goal.type] ? `${self ? 'You' : goal.user_name} ${goalTypes[goal.type].label}` : "";
     }
   };
 
-  const renderPosts = () => {
+  const renderGoals = () => {
     let goals = sortGoalsByDate();
 
     if (goals[0] === undefined) {
@@ -101,16 +93,18 @@ const RecentUserGoals = () => {
           <div>
             {renderDate(goal.date_created)} <br /> {typeToAction(goal)}
           </div>
-          <div>
-            <button
-              className="btn btn-danger pull-xs-right"
-              onClick={() => {
-                onDeleteClick(`${goal._id}`);
-              }}
-            >
-              Delete
-            </button>
-          </div>
+          {deleteGoal && (
+            <div>
+              <button
+                className="btn btn-danger pull-xs-right"
+                onClick={() => {
+                  onDeleteClick(`${goal._id}`);
+                }}
+              >
+                Delete
+              </button>
+            </div>
+          )}
         </ListItem>
       );
     });
@@ -122,14 +116,10 @@ const RecentUserGoals = () => {
 
   return (
     <ListContainer>
-      <h3>Your Recently Completed Goals</h3>
-      <List>{renderPosts()}</List>
+      <h3>{title}</h3>
+      <List>{renderGoals()}</List>
     </ListContainer>
   );
 };
 
-// function mapStateToProps(state) {
-// 	return { goals: state.goals };
-// }
-
-export default RecentUserGoals;
+export default GoalsList;

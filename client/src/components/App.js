@@ -14,10 +14,6 @@ import LoginPage from "./LoginPage";
 import SignupPage from "./SignupPage";
 
 const App = () => {
-  // componentDidMount(){
-  //   this.props.fetchUser();
-  // }
-
   return (
     <AuthStateProvider>
       <GoalsStateProvider>

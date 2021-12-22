@@ -10,6 +10,7 @@ const goalSchema = new Schema({
 	},
 	points: { type: Number, default: 1 },
 	type: String,
+	team: String,
 	data: Object,
 });
 

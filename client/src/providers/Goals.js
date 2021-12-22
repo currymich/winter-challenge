@@ -12,19 +12,23 @@ const initialState = {
 export const GoalsStateProvider = ({ children }) => {
   const { authenticated, user } = useAuthState();
   const [userGoals, setUserGoals] = useState([]);
+  const [recentGoals, setRecentGoals] = useState([]);
+  const [scoreboard, setScoreboard] = useState([]);
   const [userPoints, setUserPoints] = useState(0);
 
-  const createGoal = async ({ user_id, name, type, points, ...data }) => {
+  const createGoal = async ({ user_id, name, type, points, team, ...data }) => {
     try {
       const newGoal = await axios.post("/api/goals", {
         user_id,
         name,
         type,
         points,
+        team,
         data,
       });
 
       setUserGoals([...userGoals, newGoal.data]);
+      setRecentGoals([...recentGoals, newGoal.data]);
     } catch (error) {
       console.log("error creating goal", error);
     }
@@ -46,8 +50,22 @@ export const GoalsStateProvider = ({ children }) => {
     }
   };
 
+  const fetchRecentGoals = async () => {
+    const result = await axios.get(`/api/goals`);
+
+    setRecentGoals(result.data);
+  };
+
+  const fetchScoreboard = async () => {
+    const result = await axios.get(`/api/scoreboard`);
+
+    setScoreboard(result.data);
+  };
+
   useEffect(() => {
     fetchUserGoals();
+    fetchRecentGoals();
+    fetchScoreboard();
   }, [user]);
 
   useEffect(() => {
@@ -61,6 +79,8 @@ export const GoalsStateProvider = ({ children }) => {
   const value = {
     userGoals,
     userPoints,
+    recentGoals,
+    scoreboard,
     createGoal,
     deleteGoal,
   };

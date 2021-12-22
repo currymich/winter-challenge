@@ -16,7 +16,6 @@ const GoalImg = styled.div`
 const GoalInfo = () => (
   <>
     <GoalImg />
-    <div style={{ height: "50px" }} />
   </>
 );
 

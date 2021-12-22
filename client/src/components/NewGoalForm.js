@@ -25,7 +25,7 @@ const FormTitle = styled.h2`
 `;
 
 const NewGoalForm = () => {
-  const { createGoal, setUserGoals } = useGoalsState();
+  const { createGoal } = useGoalsState();
   const [selectedGoalType, setSelectedGoalType] = useState(
     Object.values(goalTypes)[0].value
   );
@@ -47,6 +47,7 @@ const NewGoalForm = () => {
       ...values,
       user_id: user._id,
       name: user.name,
+      team: user.team,
       type: values.type || selectedGoalType,
       points,
     });

@@ -4,7 +4,9 @@ import { useGoalsState } from "../providers/Goals";
 import styled from "styled-components";
 
 import NewGoalForm from "./NewGoalForm";
-import RecentUserGoals from "./goals/recentGoalsIndex.js";
+import GoalsList from "./GoalsList.js";
+import GoalInfo from "./GoalInfo";
+import Scoreboard from "./Scoreboard";
 
 const Container = styled.div`
   padding-bottom: 50px;
@@ -12,13 +14,13 @@ const Container = styled.div`
 
 const Dashboard = () => {
   const { authenticated, user } = useAuthState();
-  const { userPoints } = useGoalsState();
+  const { userPoints, userGoals, recentGoals, deleteGoal } = useGoalsState();
 
   return (
     <div className="wc-dashboard--wrapper">
       <div className="wc-dashboard--header">
         <div>
-          {authenticated ? (
+          {authenticated && user ? (
             <p>
               Welcome back <br />
               <span className="wc-dashboard--user">{user.name}</span>
@@ -38,17 +40,27 @@ const Dashboard = () => {
 
       {authenticated && (
         <Container>
-          <RecentUserGoals />
+          <Scoreboard />
+
+          <GoalsList
+            title={"All Recently Completed Goals"}
+            goals={recentGoals}
+          />
+
+          <GoalsList
+            title={"Your Recently Completed Goals"}
+            self
+            goals={userGoals}
+            deleteGoal={deleteGoal}
+          />
 
           <NewGoalForm />
+
+          <GoalInfo />
         </Container>
       )}
     </div>
   );
 };
-
-// function mapStateToProps(state) {
-//   return { auth: state.auth, goals: state.goals, points: state.points };
-// }
 
 export default Dashboard;
