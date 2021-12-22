@@ -73,14 +73,15 @@ const NewGoalForm = () => {
         <Form.Item
           label={field.label}
           name={field.name}
-          rules={[{ required: true }]}
+          rules={[{ required: field.required }]}
+          help={field.help}
         >
           <Input placeholder={field.placeholder || ""} />
         </Form.Item>
       ))}
       <Form.Item
         name="multiplyer"
-        label="Number of other participants"
+        label="Number of other participants (not including you)"
         help="Point value is multiplied by the num of people you did the activity with"
       >
         <Select placeholder="3">
