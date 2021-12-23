@@ -29,6 +29,14 @@ export const GoalsStateProvider = ({ children }) => {
 
       setUserGoals([...userGoals, newGoal.data]);
       setRecentGoals([...recentGoals, newGoal.data]);
+
+      const newScoreboard = [...scoreboard].map((t) => {
+        if (t.team === team) {
+          return { team, points: parseInt(t.points) + points };
+        }
+        return t;
+      });
+      setScoreboard(newScoreboard);
     } catch (error) {
       console.log("error creating goal", error);
     }
@@ -38,6 +46,8 @@ export const GoalsStateProvider = ({ children }) => {
     axios.delete(`/api/goals/${goalId}`);
 
     fetchUserGoals();
+    fetchRecentGoals();
+    fetchScoreboard();
   };
 
   const fetchUserGoals = async () => {
