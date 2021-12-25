@@ -29,6 +29,7 @@ const NewGoalForm = () => {
   const [selectedGoalType, setSelectedGoalType] = useState(
     Object.values(goalTypes)[0].value
   );
+  const [selectedMultiplyer, setSelectedMultiplyer] = useState(1);
   const { user } = useAuthState();
   const [form] = Form.useForm();
 
@@ -36,11 +37,15 @@ const NewGoalForm = () => {
     setSelectedGoalType(value);
   };
 
+  const onMultiplyerChange = (value) => {
+    setSelectedMultiplyer(value);
+  };
+
   const onSubmit = async (values) => {
     let points = goalTypes[selectedGoalType].pointCalculation(values);
 
-    if (values.multiplyer) {
-      points = points * (parseInt(values.multiplyer) + 1);
+    if (values.multiplyer && selectedGoalType !== "exercise") {
+      points = points * parseInt(values.multiplyer);
     }
 
     createGoal({
@@ -80,19 +85,25 @@ const NewGoalForm = () => {
           <Input placeholder={field.placeholder || ""} />
         </Form.Item>
       ))}
-      <Form.Item
-        name="multiplyer"
-        label="Number of other participants (not including you)"
-        help="Point value is multiplied by the num of people you did the activity with"
-      >
-        <Select placeholder="3">
-          {[0, 1, 2, 3, 4, "5+"].map((num) => (
-            <Option value={num} key={num}>
-              {num}
-            </Option>
-          ))}
-        </Select>
-      </Form.Item>
+      {selectedGoalType !== "exercise" && (
+        <Form.Item
+          name="multiplyer"
+          label="Number of participants (including you!)"
+          help="Point value is multiplied by the num of people you did the activity with"
+        >
+          <Select
+            placeholder="3"
+            defaultValue={selectedMultiplyer}
+            onChange={onMultiplyerChange}
+          >
+            {[1, 2, 3, 4, "5+"].map((num) => (
+              <Option value={num} key={num}>
+                {num}
+              </Option>
+            ))}
+          </Select>
+        </Form.Item>
+      )}
 
       <div className="form-buttons">
         <Button type="primary" htmlType="submit">

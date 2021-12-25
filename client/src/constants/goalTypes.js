@@ -26,9 +26,9 @@ const goalTypes = {
       {
         name: "chapters",
         label: "Number of chapters",
-        placeholder: "3",
+        placeholder: "2",
         required: true,
-        help: "Add in groups of 3 at a time to earn points",
+        help: "Add in groups of 2 at a time to earn points",
       },
       {
         name: "reference",
@@ -37,7 +37,7 @@ const goalTypes = {
         required: true,
       },
     ],
-    pointCalculation: ({ chapters }) => Math.floor(parseInt(chapters) / 3),
+    pointCalculation: ({ chapters }) => Math.floor(parseInt(chapters) / 2),
   },
   memorizeVerse: {
     label: "Memorized verse",
@@ -117,12 +117,12 @@ const goalTypes = {
       {
         name: "duration",
         label: "How long did you exercise (min)",
-        placeholder: "20",
+        placeholder: "60",
         required: true,
-        help: "Must be at least 10 min to earn points"
+        help: "Must be at least 20 min to earn points"
       },
     ],
-    pointCalculation: ({ duration }) => Math.floor(parseInt(duration) / 10),
+    pointCalculation: ({ duration }) => Math.floor(parseInt(duration) / 20),
   },
   devotions: {
     label: "Did DT",
