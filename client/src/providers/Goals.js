@@ -72,6 +72,16 @@ export const GoalsStateProvider = ({ children }) => {
     setScoreboard(result.data);
   };
 
+  const fetchAllGoals = async (pass) => {
+    if (pass === "51234") {
+      const result = await axios.get(`/api/goals/all`);
+
+      return { data: result.data, error: null };
+    } else {
+      return { error: "wrong pass", data: null };
+    }
+  };
+
   useEffect(() => {
     fetchUserGoals();
     fetchRecentGoals();
@@ -93,6 +103,7 @@ export const GoalsStateProvider = ({ children }) => {
     scoreboard,
     createGoal,
     deleteGoal,
+    fetchAllGoals,
   };
 
   return <GoalsStateContext.Provider value={value} children={children} />;

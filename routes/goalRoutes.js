@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Goal = mongoose.model("goals");
 const User = mongoose.model("users");
-const _ = require('lodash')
+const _ = require("lodash");
 
 module.exports = (app) => {
   app.post("/api/goals", async (req, res) => {
@@ -48,20 +48,36 @@ module.exports = (app) => {
 
   app.get("/api/scoreboard", async (req, res) => {
     const allGoals = await Goal.find();
-    const groupedGoals = _.groupBy(allGoals, 'team')
+    const groupedGoals = _.groupBy(allGoals, "team");
 
-    const teams = ["Uppers Bros", "Lowers/Staff Bros", "Sisters"]
-    const teamPoints = teams.map(team => {
-      const teamGoals = groupedGoals[team] || []
+    const teams = ["Uppers Bros", "Lowers/Staff Bros", "Sisters"];
+    const teamPoints = teams.map((team) => {
+      const teamGoals = groupedGoals[team] || [];
       const points = teamGoals.reduce(
         (sum, goal) => sum + parseInt(goal.points),
         0
       );
 
-      return {team, points}
-    })
-
+      return { team, points };
+    });
 
     res.send(teamPoints);
-  })
+  });
+
+  app.get("/api/goals/all", async (req, res) => {
+    const allGoals = await Goal.find({}, { data: 1, points: 1, user_name: 1, type: 1, _id: 0 });
+    const groupedGoals = _.groupBy(allGoals, "user_name");
+
+    const users = Object.keys(groupedGoals).map((user_name) => {
+      const userGoals = groupedGoals[user_name] || [];
+      const points = userGoals.reduce(
+        (sum, goal) => sum + parseInt(goal.points),
+        0
+      );
+
+      return { user_name, points, userGoals };
+    });
+
+    res.send(users);
+  });
 };

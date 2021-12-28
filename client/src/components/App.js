@@ -9,6 +9,7 @@ import "../style.css";
 import Header from "./Header";
 import Landing from "./Landing";
 import Dashboard from "./Dashboard";
+import AdminPage from "./Admin";
 import UserPointList from "./UserPointList";
 import LoginPage from "./LoginPage";
 import SignupPage from "./SignupPage";
@@ -26,6 +27,7 @@ const App = () => {
                 <Route path="/pointlist" component={UserPointList} />
                 <Route path="/login" component={LoginPage} />
                 <Route path="/signup" component={SignupPage} />
+                <Route path="/admin" component={AdminPage} />
                 <Route path="/" component={Landing} />
               </Switch>
             </>
