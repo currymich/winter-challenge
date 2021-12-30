@@ -43,7 +43,9 @@ export const GoalsStateProvider = ({ children }) => {
   };
 
   const deleteGoal = async (goalId) => {
-    axios.delete(`/api/goals/${goalId}`);
+    if (window.confirm("Are you sure you wish to delete this item?")) {
+      axios.delete(`/api/goals/${goalId}`);
+    }
 
     fetchUserGoals();
     fetchRecentGoals();

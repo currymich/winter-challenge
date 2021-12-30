@@ -61,7 +61,7 @@ const NewGoalForm = () => {
 
   return (
     <StyledForm onFinish={onSubmit} form={form}>
-      <FormTitle>New Goal Completed</FormTitle>
+      <FormTitle>Enter New Goal</FormTitle>
       <Form.Item name="type" label="Goal">
         <Select
           placeholder="Select a goal"

@@ -29,7 +29,6 @@ const Chart = styled.div`
 
 const Scoreboard = () => {
   const { scoreboard } = useGoalsState();
-  console.log("scores", scoreboard);
 
   const renderChart = (data) => {
     const points = data.map((d) => {

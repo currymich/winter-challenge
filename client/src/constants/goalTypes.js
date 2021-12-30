@@ -112,6 +112,7 @@ const goalTypes = {
       {
         name: "exercise",
         label: "Exercise",
+        required: true,
         placeholder: "Running, Swimming, etc.",
       },
       {
@@ -119,10 +120,10 @@ const goalTypes = {
         label: "How long did you exercise (min)",
         placeholder: "60",
         required: true,
-        help: "Must be at least 20 min to earn points"
+        help: "Must be at least 30 min to earn points",
       },
     ],
-    pointCalculation: ({ duration }) => Math.floor(parseInt(duration) / 20),
+    pointCalculation: ({ duration }) => Math.floor(parseInt(duration) / 30),
   },
   devotions: {
     label: "Did DT",
@@ -177,9 +178,9 @@ const goalTypes = {
         label: "How long did it take (min)",
         placeholder: "10",
         required: true,
-        help: "Must be at least 10 min to earn points"
+        help: "Must be at least 10 min to earn points",
       },
-      { name: "chore", label: "What did you do" },
+      { name: "chore", label: "What did you do", required: true, placeholder: 'Vacuumed' },
     ],
     pointCalculation: ({ duration }) => Math.floor(parseInt(duration) / 10),
   },

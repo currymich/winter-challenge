@@ -41,7 +41,7 @@ module.exports = (app) => {
 
   //generic get all goals route (caution - big)
   app.get("/api/goals", async (req, res) => {
-    const allGoals = await Goal.find().sort({ $natural: -1 }).limit(5);
+    const allGoals = await Goal.find().sort({ $natural: -1 }).limit(10);
 
     res.send(allGoals);
   });

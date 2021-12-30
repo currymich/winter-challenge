@@ -1,18 +1,33 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useAuthState } from "../providers/Auth";
 import { useGoalsState } from "../providers/Goals";
 import styled from "styled-components";
+import { Button } from "antd";
 
 import NewGoalForm from "./NewGoalForm";
 import GoalsList from "./GoalsList.js";
 import GoalInfo from "./GoalInfo";
 import Scoreboard from "./Scoreboard";
+import Padlet from "./Padlet";
 
-const Container = styled.div`
-  padding-bottom: 50px;
+const ButtonContainer = styled.div`
+  display: flex;
+  width: 100%;
+
+  justify-content: center;
+  margin: 50px auto;
 `;
 
+const Container = styled.div`
+  padding: 0 50px 50px 50px;
+`;
+
+const scrollToRef = (ref) => {
+  ref.current.scrollIntoView();
+};
+
 const Dashboard = () => {
+  const allGoalsRef = useRef(null);
   const { authenticated, user } = useAuthState();
   const { userPoints, userGoals, recentGoals, deleteGoal } = useGoalsState();
 
@@ -40,12 +55,13 @@ const Dashboard = () => {
 
       {authenticated && (
         <Container>
-          <Scoreboard />
+          <ButtonContainer>
+            <Button onClick={() => scrollToRef(allGoalsRef)} size='large'>
+              View goals from others!
+            </Button>
+          </ButtonContainer>
 
-          <GoalsList
-            title={"All Recently Completed Goals"}
-            goals={recentGoals}
-          />
+          <Scoreboard />
 
           <GoalsList
             title={"Your Recently Completed Goals"}
@@ -57,6 +73,18 @@ const Dashboard = () => {
           <NewGoalForm />
 
           <GoalInfo />
+
+          <div
+            style={{ borderTop: "1px solid #ddd", paddingTop: "50px" }}
+            ref={allGoalsRef}
+          >
+            <GoalsList
+              style={{ marginTop: "0px" }}
+              title={"All Recently Completed Goals"}
+              goals={recentGoals}
+            />
+            <Padlet />
+          </div>
         </Container>
       )}
     </div>
