@@ -54,7 +54,7 @@ module.exports = (app) => {
 
     const teamPoints = teams.map((team) => {
       const teamGoals = groupedGoals[team] || [];
-      const uniqUsers = _.uniqBy(teamGoals, 'user_id').length
+      const uniqUsers = _.uniqBy(teamGoals, 'user_id').map(u => u.user_name)
 
       const points = teamGoals.reduce(
         (sum, goal) => sum + parseInt(goal.points),
