@@ -55,7 +55,7 @@ const Admin = () => {
           help={error}
           rules={[{ required: true }]}
         >
-          <Input placeholder="Password" />
+          <Input placeholder="Password" type="password" />
         </Form.Item>
 
         <div className="form-buttons">

@@ -32,7 +32,7 @@ export const GoalsStateProvider = ({ children }) => {
 
       const newScoreboard = [...scoreboard].map((t) => {
         if (t.team === team) {
-          return { team, points: parseInt(t.points) + points };
+          return { ...t, points: parseInt(t.points) + points };
         }
         return t;
       });

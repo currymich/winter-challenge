@@ -51,14 +51,17 @@ module.exports = (app) => {
     const groupedGoals = _.groupBy(allGoals, "team");
 
     const teams = ["Uppers Bros", "Lowers/Staff Bros", "Sisters"];
+
     const teamPoints = teams.map((team) => {
       const teamGoals = groupedGoals[team] || [];
+      const uniqUsers = _.uniqBy(teamGoals, 'user_id').length
+
       const points = teamGoals.reduce(
         (sum, goal) => sum + parseInt(goal.points),
         0
       );
 
-      return { team, points };
+      return { team, points, uniqUsers };
     });
 
     res.send(teamPoints);

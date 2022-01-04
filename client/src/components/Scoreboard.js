@@ -32,25 +32,24 @@ const Scoreboard = () => {
 
   const renderChart = (data) => {
     const points = data.map((d) => {
-      return d.points;
+      if (d.uniqUsers) {
+        return Math.round(d.points / d.uniqUsers * 100) / 100;
+      }
+      return 0;
     });
 
-    var max = points.reduce((a, b) => {
+    var max = data.map(d => d.points).reduce((a, b) => {
       return Math.max(a, b);
     }, 0);
 
-    data.forEach((datum) => {
-      datum.width = 100 * (datum.points / max);
+    data.forEach((d, i) => {
+      d.width = 100 * (d.points / max);
     });
 
-    return _.map(data, (datum) => {
+    return data.map((d, i) => {
       return (
-        <div
-          key={datum.team}
-          className="bar"
-          style={{ width: datum.width + "%" }}
-        >
-          {`${datum.team} (${datum.points})`}
+        <div key={d.team} className="bar" style={{ width: d.width + "%" }}>
+          {`${d.team} (total: ${d.points})`}
         </div>
       );
     });
