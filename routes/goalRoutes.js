@@ -48,27 +48,39 @@ module.exports = (app) => {
 
   app.get("/api/scoreboard", async (req, res) => {
     const allGoals = await Goal.find();
-    const groupedGoals = _.groupBy(allGoals, "team");
+    const allUsers = await User.find();
+    const groupedGoals = _.groupBy(allGoals, "user_id");
 
-    const teams = ["Uppers Bros", "Lowers/Staff Bros", "Sisters"];
+    const teamData = {};
 
-    const teamPoints = teams.map((team) => {
-      const teamGoals = groupedGoals[team] || [];
-      const uniqUsers = _.uniqBy(teamGoals, 'user_id').map(u => u.user_name)
+    const userPoints = Object.keys(groupedGoals).map((userId) => {
+      const userGoals = groupedGoals[userId] || [];
 
-      const points = teamGoals.reduce(
+      const points = userGoals.reduce(
         (sum, goal) => sum + parseInt(goal.points),
         0
       );
 
-      return { team, points, uniqUsers };
+      const { team } = userGoals;
+      const oldData = teamData[userGoals[0].team] || {
+        points: 0,
+        uniqUsers: [],
+      };
+      teamData[userGoals[0].team] = {
+        team: userGoals[0].team,
+        points: (oldData.points += points),
+        uniqUsers: [...oldData.uniqUsers, userGoals[0].user_name],
+      };
     });
 
-    res.send(teamPoints);
+    res.send(Object.values(teamData));
   });
 
   app.get("/api/goals/all", async (req, res) => {
-    const allGoals = await Goal.find({}, { data: 1, points: 1, user_name: 1, type: 1, _id: 0 });
+    const allGoals = await Goal.find(
+      {},
+      { data: 1, points: 1, user_name: 1, type: 1, _id: 0 }
+    );
     const groupedGoals = _.groupBy(allGoals, "user_name");
 
     const users = Object.keys(groupedGoals).map((user_name) => {
