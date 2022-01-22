@@ -52,6 +52,19 @@ const goalTypes = {
     ],
     pointCalculation: ({}) => 1,
   },
+  memorizeHymn: {
+    label: "Memorized hymn",
+    value: "memorizeHymn",
+    fields: [
+      {
+        name: "name",
+        label: "Hymn name",
+        placeholder: "Amazing Grace",
+        required: true,
+      },
+    ],
+    pointCalculation: ({}) => 2,
+  },
   memorizeChapter: {
     label: "Memorized bible chapter",
     value: "memorizeChapter",
