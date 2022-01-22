@@ -43,7 +43,7 @@ const Scoreboard = () => {
     }, 0);
 
     data.forEach((d, i) => {
-      d.width = 100 * (points[i] / max);
+      d.width = 100 * (d.points / max);
     });
 
     return data.map((d, i) => {
