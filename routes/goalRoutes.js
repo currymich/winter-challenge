@@ -49,6 +49,8 @@ module.exports = (app) => {
   app.get("/api/scoreboard", async (req, res) => {
     const allGoals = await Goal.find();
     const allUsers = await User.find();
+    const keyedUsers = _.keyBy(allUsers, '_id')
+
     const groupedGoals = _.groupBy(allGoals, "user_id");
 
     const teamData = {};
@@ -66,8 +68,9 @@ module.exports = (app) => {
         points: 0,
         uniqUsers: [],
       };
-      teamData[userGoals[0].team] = {
-        team: userGoals[0].team,
+
+      teamData[keyedUsers[userId].team] = {
+        team: keyedUsers[userId].team,
         points: (oldData.points += points),
         uniqUsers: [...oldData.uniqUsers, userGoals[0].user_name],
       };
