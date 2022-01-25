@@ -38,12 +38,12 @@ const Scoreboard = () => {
       return 0;
     });
 
-    var max = data.map(d => d.points).reduce((a, b) => {
+    var max = points.reduce((a, b) => {
       return Math.max(a, b);
     }, 0);
 
     data.forEach((d, i) => {
-      d.width = 100 * (d.points / max);
+      d.width = 100 * (points[i] / max);
     });
 
     return data.map((d, i) => {
