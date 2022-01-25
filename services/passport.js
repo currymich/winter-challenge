@@ -34,7 +34,14 @@ passport.use(
       if (user && !user.password && !user.salt) {
         const { salt, hash } = genPassword(password);
 
-        User.updateOne({ email }, { $set: { password: hash, salt: salt } });
+        User.findOneAndUpdate(
+          { email },
+          { password: hash, salt: salt },
+          { new: true },
+          (err, updatedUser) => {
+            console.log(updatedUser);
+          }
+        );
         return done(null, user);
       }
       if (!validPassword(password, user.password, user.salt)) {
