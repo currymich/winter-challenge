@@ -33,7 +33,7 @@ const Scoreboard = () => {
   const renderChart = (data) => {
     const points = data.map((d) => {
       if (d.uniqUsers && d.uniqUsers.length) {
-        return Math.round(d.points / d.uniqUsers.length * 10) / 10;
+        return Math.round(d.points * 10) / 10;
       }
       return 0;
     });
@@ -43,7 +43,7 @@ const Scoreboard = () => {
     }, 0);
 
     data.forEach((d, i) => {
-      d.width = 100 * (d.points / max);
+      d.width = 100 * (points[i] / max);
     });
 
     return data.map((d, i) => {
