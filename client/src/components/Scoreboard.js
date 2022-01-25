@@ -38,7 +38,7 @@ const Scoreboard = () => {
       return 0;
     });
 
-    var max = points.reduce((a, b) => {
+    var max = data.map(d => d.points).reduce((a, b) => {
       return Math.max(a, b);
     }, 0);
 
