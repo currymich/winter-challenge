@@ -48,14 +48,14 @@ const NewGoalForm = () => {
       points = points * parseInt(values.multiplyer);
     }
 
-    createGoal({
-      ...values,
-      user_id: user._id,
-      name: user.name,
-      team: user.team,
-      type: values.type || selectedGoalType,
-      points,
-    });
+    // createGoal({
+    //   ...values,
+    //   user_id: user._id,
+    //   name: user.name,
+    //   team: user.team,
+    //   type: values.type || selectedGoalType,
+    //   points,
+    // });
     form.resetFields();
   };
 
@@ -106,8 +106,8 @@ const NewGoalForm = () => {
       )}
 
       <div className="form-buttons">
-        <Button type="primary" htmlType="submit">
-          Submit
+        <Button type="primary" htmlType="submit" disabled>
+          Thank you for playing :)
         </Button>
       </div>
     </StyledForm>
