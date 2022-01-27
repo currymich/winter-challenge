@@ -49,34 +49,34 @@ module.exports = (app) => {
   app.get("/api/scoreboard", async (req, res) => {
     const allGoals = await Goal.find();
     const allUsers = await User.find();
-    const keyedUsers = _.keyBy(allUsers, '_id')
 
     const groupedGoals = _.groupBy(allGoals, "user_id");
+    const keyedUsers = _.keyBy(allUsers, "_id");
 
-    const teamData = {};
-
-    const userPoints = Object.keys(groupedGoals).map((userId) => {
-      const userGoals = groupedGoals[userId] || [];
+    const teamPoints = {};
+    Object.keys(groupedGoals).map((userId) => {
+      const userGoals = groupedGoals[userId];
+      const user = keyedUsers[userId];
 
       const points = userGoals.reduce(
         (sum, goal) => sum + parseInt(goal.points),
         0
       );
 
-      const { team } = userGoals;
-      const oldData = teamData[userGoals[0].team] || {
-        points: 0,
-        uniqUsers: [],
-      };
+      const { team, name } = user;
 
-      teamData[keyedUsers[userId].team] = {
-        team: keyedUsers[userId].team,
-        points: (oldData.points += points),
-        uniqUsers: [...oldData.uniqUsers, userGoals[0].user_name],
-      };
+      if (teamPoints[team]) {
+        teamPoints[team] = {
+          ...teamPoints[team],
+          points: teamPoints[team].points + points,
+          uniqUsers: [...teamPoints[team].uniqUsers, `${name}:${userId}`],
+        };
+      } else {
+        teamPoints[team] = { team, points, uniqUsers: [`${name}:${userId}`] };
+      }
     });
 
-    res.send(Object.values(teamData));
+    res.send(Object.values(teamPoints));
   });
 
   app.get("/api/goals/all", async (req, res) => {
